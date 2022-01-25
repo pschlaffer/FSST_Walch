@@ -2,7 +2,7 @@
 # 16.11.2021
 # FSST - Kaiser
 import math as m
-#test 235
+#test 2356cd
 class components:
     def __init__(self,tolerance, impedance, voltage,frequenz, phi):
         self.tolerance    = tolerance
