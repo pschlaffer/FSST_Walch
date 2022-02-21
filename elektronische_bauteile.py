@@ -1,6 +1,6 @@
 # Philip Schlaffer
 # 21.02.2022
-# FSST - Walch
+# FSST - Walch -
 
 import math as m
 class components:
