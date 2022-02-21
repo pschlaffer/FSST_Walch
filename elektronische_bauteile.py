@@ -1,8 +1,8 @@
 # Philip Schlaffer
-# 16.11.2021
-# FSST - Kaiser
+# 21.02.2022
+# FSST - Walch
+
 import math as m
-#test 2356cd
 class components:
     def __init__(self,tolerance, impedance, voltage,frequenz, phi):
         self.tolerance    = tolerance
@@ -10,22 +10,30 @@ class components:
         self.voltage      = voltage
         self.frequenz     = frequenz
         self.phi          = phi
-
+        
 class resistor(components): 
-    def __init__(self,ohmvalue, tolerance, impedance, voltage, frequenz, phi):
+    def __init__(self, select, ohm_valueR1, ohm_valueR2, tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self, tolerance, impedance, voltage,frequenz, phi)
-        self.ohmvalue   = ohmvalue
-    
+        self.select = select
+        self.ohm_valueR1   = ohm_valueR1
+        self.ohm_valueR2   = ohm_valueR2
+
     def current(self,R):
         iMathI = R.voltage/R.impedance
         iMathI_mA = round((iMathI*1000),3)
 
         print("Widerstandsstrom I:", iMathI_mA, "[mA]\n")
 
+        if (R.select == "P"):
+            R12 = (R.ohm_valueR1 * R.ohm_valueR2)/(R.ohm_valueR1 + R.ohm_valueR2)
+            print("Parellelwiederstand: ", R12)
+        else:
+            R12 = R.ohm_valueR1 + R.ohm_valueR2
+            print("Seriellerwiederstand: ", R12)
         user_select()
 
 class capacitor(components):
-    def __init__(self, faradvalue, tolerance, impedance, voltage, frequenz, phi):
+    def __init__(self, select, farad_valueR1, farad_ValueR2, tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self, tolerance, impedance, voltage, frequenz, phi)
         self.faradvalue = faradvalue
 
@@ -39,9 +47,14 @@ class capacitor(components):
         print("Leistungsfaktor PhiC:", iMathPHIC_round, "\n")
 
         user_select()
+    
+    def tiefpass(self, C):
+        d 
+    def hochpass(self, C):
+        d
 
 class spool(components):
-    def __init__(self, henry, tolerance, impedance, voltage, frequenz, phi):
+    def __init__(self, select, henry_valueR1, henry_ValueR2, tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self,tolerance, impedance, voltage, frequenz, phi)
         self.henry    = henry
 
@@ -58,48 +71,70 @@ class spool(components):
 
 def user_select():
     cSelect = input("Was wollen sie berechen (R, C, L)?: ")
-
+    cPSelect = input("Parallel (P) o. Seriell (S) Schaltung?: ")
     # Resistor
     if (cSelect == "R" or cSelect == "r"):
-        print("Für Exit: [Enter]\n")
-        print("Resistor Current Calculator")
-        
-        u_valueR   = int(input("Spannung in [V]: "))
-        imp_valueR = int(input("Impedanz in [Ohm]: "))
-
-        R = resistor(300, 10, imp_valueR, u_valueR, 50, 1)
-        R.current(R)
+            resistor_calc(cPSelect)
 
     # Capacitator
     if (cSelect == "C" or cSelect == "c"):
-        print("Für Exit: [Enter]\n")
-        print("Capacitor Current Calculator")
-
-        umn_sel  = input("Farad in u, n: ")
-        if (umn_sel == "u" or umn_sel == "U"):
-            farad    = int(input("Farad in [uF]: "))
-            farad_n  = farad * 10**-6
-        if (umn_sel == "n" or umn_sel == "N"):
-            farad    = int(input("Farad in [nF]: "))
-            farad_n  = farad * 10**-9   
-
-        u_valueC = int(input("Spannung in [V]: "))
-        f_valueC = int(input("Frequenz in [Hz]: "))
-
-        C = capacitor(farad_n, 10, 350, u_valueC ,f_valueC , 1)
-        C.current(C)
+        if (cPSelect == "P" or cPSelect == "p"):
+            capacitor_calc()
 
     # Spool
     if (cSelect == "L" or cSelect == "l"):
+        if (cPSelect == "P" or cPSelect == "p"):
+            spool_calc()
+
+def resistor_calc(cPSelect):
+    if (cPSelect == "P" or cPSelect == "p"):
+        print("\nFür Exit: [Enter]")
+        print("Resistor Calculator")
+        
+        ohm_valueR1 = int(input("Geben sie zwei Widerstandwerte ein 1.: "))
+        ohm_ValueR2 = int(input("Geben sie zwei Widerstandwerte ein 2.: "))
+
+        R = resistor("P", ohm_valueR1, ohm_valueR2, 10, 100, 12, 50, 1)
+        R.current(R)
+    else:
+        print("Serielle Schaltung:")
+        ohm_valueR1 = int(input("Geben sie zwei Widerstandwerte ein 1.: "))
+        ohm_valueR2 = int(input("Geben sie zwei Widerstandwerte ein 2.: "))
+        R = resistor("S", ohm_valueR1, ohm_valueR2, 10, 100, 12, 50, 1)
+        R.current(R)
+
+def capacitor_calc():
+    if (cPSelect == "P" or cPSelect == "p"):
         print("Für Exit: [Enter]\n")
-        print("Spool Current Calculator")
+        print("Capacitor Calculator")
 
-        henry    = int(input("Henry in [mH]: "))
-        u_valueL = int(input("Spannung in [V]: "))
-        f_valueL = int(input("Frequenz in [Hz]: "))
+        farad_valueR1 = int(input("Geben sie zwei Kondensatorwerte ein 1.: "))
+        farad_ValueR2 = int(input("Geben sie zwei Kondensatorwerte ein 2.: "))
 
-        henry_n = henry * 10**-3
-        L = spool(henry_n, 15, 400, u_valueL, f_valueL, 1)
+        C = capacitor("P",farad_valueR1, farad_ValueR2, 10, 350, u_valueC ,f_valueC , 1)
+        C.current(C)
+    else:
+        farad_valueR1 = int(input("Geben sie zwei Kondensatorwerte ein 1.: "))
+        farad_ValueR2 = int(input("Geben sie zwei Kondensatorwerte ein 2.: "))
+
+        C = capacitor("S",farad_valueR1, farad_ValueR2, 10, 350, u_valueC ,f_valueC , 1)
+        C.current(C)
+
+def spool_calc():
+    if (cPSelect == "P" or cPSelect == "p"):
+        print("Für Exit: [Enter]\n")
+        print("Spool Calculator")
+
+        henry_valueR1 = int(input("Geben sie zwei Henrywerte ein 1.: "))
+        henry_ValueR2 = int(input("Geben sie zwei Henrywerte ein 2.: "))
+
+        L = spool("P",henry_valueR1, henry_valueR2, 15, 400, 12, 60, 1)
         L.current(L)
-  
+    else:
+        henry_valueR1 = int(input("Geben sie zwei Henrywerte ein 1.: "))
+        henry_ValueR2 = int(input("Geben sie zwei Henrywerte ein 2.: "))
+
+        L = spool("P",henry_valueR1, henry_valueR2, 15, 400, 12, 60, 1)
+        L.current(L)
+
 user_select()
