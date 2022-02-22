@@ -1,4 +1,4 @@
-# Philip Schlaffer
+# Philip Schlaffer & Benedikt Mangott
 # 21.02.2022
 # FSST - Walch
 
@@ -14,40 +14,33 @@ class components:
 class resistor(components): 
     def __init__(self, select, ohm_valueR1, ohm_valueR2, tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self, tolerance, impedance, voltage,frequenz, phi)
-        self.select = select
+        self.select      = select
         self.ohm_valueR1 = ohm_valueR1
         self.ohm_valueR2 = ohm_valueR2
 
     def current(self,R):
-        iMathI = R.voltage/R.impedance
-        iMathI_mA = round((iMathI*1000),3)
-        # print("Widerstandsstrom I:", iMathI_mA, "[mA]\n")
-
+        # Parralel Schaltung
         if (R.select == "P"):
             R12 = (R.ohm_valueR1 * R.ohm_valueR2)/(R.ohm_valueR1 + R.ohm_valueR2)
             print("Parellelwiederstand: ", R12, "Ohm")
+        
+        # Seriell Schaltung
         else:
             R12 = R.ohm_valueR1 + R.ohm_valueR2
             print("Seriellerwiederstand: ", R12, "Ohm")
+            
         user_select()
 
 class capacitor(components):
     def __init__(self, select, LCselect, farad_value1, ohm_valueR1, henry_value1, tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self, tolerance, impedance, voltage, frequenz, phi)
-        self.select = select
-        self.LCselect = LCselect
+        self.select       = select
+        self.LCselect     = LCselect
         self.farad_value1 = farad_value1
         self.ohm_valueR1  = ohm_valueR1
         self.henry_value1 = henry_value1
 
     def current(self, C):
-        iMathC = (C.voltage * C.farad_value1 * (2*m.pi*C.frequenz))
-        iMathC_mA = round((iMathC*1000),3)
-        iMathPHIC = C.phi + (m.pi/2)
-        iMathPHIC_round = round(iMathPHIC, 3)
-        # print("Kondensatorstrom I: ", iMathC_mA, "[mA]")
-        # print("Leistungsfaktor PhiC:", iMathPHIC_round, "\n")
-    
         # RC Glied
         if (C.LCselect == "RC" or C.LCselect == "rc"):
             if (C.select == "H"):
@@ -75,25 +68,19 @@ class capacitor(components):
                 fg = 1/(2*m.pi*m.sqrt(mHenry*nanofarad))
                 fg_round = round(fg, 3)
                 print("Die Grenzfrequenz beträgt: ", fg_round," Hz")
+
         user_select()
 
 class spool(components):
     def __init__(self, select, LCselect,henry_value1, ohm_valueR1, farad_value1,tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self,tolerance, impedance, voltage, frequenz, phi)
-        self.select = select
-        self.LCselect = LCselect
-        self.henry_value1 = henry_value1
-        self.ohm_valueR1  = ohm_valueR1
+        self.select        = select
+        self.LCselect      = LCselect
+        self.henry_value1  = henry_value1
+        self.ohm_valueR1   = ohm_valueR1
         self. farad_value1 = farad_value1
 
     def current(self, L):
-        iMathL = L.voltage/((2*m.pi*L.frequenz)*L.henry_value1)
-        iMathL_mA = round((iMathL*1000), 3)
-        iMathPHIL = L.phi - (m.pi/2)
-        iMathPHIL_round = round(iMathPHIL, 3)
-        # print("Spulentrom I: ", iMathL_mA, "[mA]")
-        # print("Leistungsfaktor PhiL:", iMathPHIL_round, "\n")
-
         # LC Glied
         if (L.LCselect == "LC" or L.LCselect == "lc"):
             if (L.select == "H"):
