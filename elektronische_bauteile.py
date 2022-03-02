@@ -362,7 +362,7 @@ def capacitor_calc(rechner):
         def enter(event):
             get()
 
-        calc_b = Button(rechner, text="Lösen", command=lambda: get(event))
+        calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.place(x=250, y= 90)
         rechner.bind('<Return>', enter)
         rechner.mainloop()
