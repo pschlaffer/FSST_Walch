@@ -3,6 +3,7 @@
 # FSST - Walch
 
 from tkinter import *
+from PIL import ImageTk, Image
 import math as m
 
 class components:
@@ -165,6 +166,12 @@ def resistor_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
+        parallel_image = Image.open("Resistor_par.png")
+        img_open = ImageTk.PhotoImage(parallel_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=130, y=140)
+        img_label.configure(background='white')
+
         cSelect1 = Label(rechner, text="Parallel Schaltung Rechner")
         cSelect1.place(x=120, y=20)
 
@@ -187,6 +194,9 @@ def resistor_calc(rechner):
             ohm_valuegetR2 = ohm_valueR2.get()
             int_ohm_valueR2 = int(ohm_valuegetR2)
 
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
+
             R = resistor("P", int_ohm_valueR1, int_ohm_valueR2, 10, 100, 12, 50, 1)
             R.current(R, rechner)
 
@@ -202,6 +212,12 @@ def resistor_calc(rechner):
     def seriell():
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        seriell_image = Image.open("Resistor_ser.png")
+        img_open = ImageTk.PhotoImage(seriell_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=130, y=140)
+        img_label.configure(background='white')
 
         cSelect1 = Label(rechner, text="Reihenschaltung Rechner")
         cSelect1.place(x=110, y=20)
@@ -225,6 +241,9 @@ def resistor_calc(rechner):
             ohm_valuegetR2 = ohm_valueR2.get()
             int_ohm_valueR2 = int(ohm_valuegetR2)
 
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
+
             R = resistor("S", int_ohm_valueR1, int_ohm_valueR2, 10, 100, 12, 50, 1)
             R.current(R, rechner)
         
@@ -236,8 +255,6 @@ def resistor_calc(rechner):
         rechner.bind('<Return>', enter)
         rechner.mainloop()
     
-        
-
     # Widerstand auswählen Frame
     for widgets in rechner.winfo_children():
         widgets.destroy()
@@ -257,6 +274,12 @@ def capacitor_calc(rechner):
     def LCglied():
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        lcPass_image = Image.open("LC-pass.png")
+        img_open = ImageTk.PhotoImage(lcPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
 
         cSelect1 = Label(rechner, text="Grenzfrequenz LC Glied")
         cSelect1.place(x=120, y=20)
@@ -282,6 +305,9 @@ def capacitor_calc(rechner):
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
 
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
+
             C = capacitor("LC", int_farad_value, ohm_valueR1, int_henry_value, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
@@ -297,6 +323,12 @@ def capacitor_calc(rechner):
     def RCglied():
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        rcPass_image = Image.open("RC-Tiefpass.png")
+        img_open = ImageTk.PhotoImage(rcPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
 
         cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied")
         cSelect1.place(x=120, y=20)
@@ -320,6 +352,9 @@ def capacitor_calc(rechner):
             int_ohm_value = int(ohm_valueget)
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
+
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
 
             C = capacitor("RC", int_farad_value, int_ohm_value, henry, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
@@ -350,7 +385,7 @@ def spool_calc(rechner):
     def spool_select():
         for widgets in rechner.winfo_children():
             widgets.destroy()
-        
+
         cSelect = Label(rechner, text="Ihre Schaltungsart?")
         cSelect.place(x=120, y=20)
 
@@ -364,6 +399,12 @@ def spool_calc(rechner):
     def LCglied():
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        lcPass_image = Image.open("LC-pass.png")
+        img_open = ImageTk.PhotoImage(lcPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
 
         cSelect1 = Label(rechner, text="Grenzfrequenz LC Glied")
         cSelect1.place(x=120, y=20)
@@ -389,6 +430,9 @@ def spool_calc(rechner):
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
 
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
+
             C = capacitor("LC", int_farad_value, ohm_valueR1, int_henry_value, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
@@ -405,6 +449,18 @@ def spool_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
+        rlPass_image = Image.open("rl-Tiefpass.png")
+        img_open = ImageTk.PhotoImage(rlPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
+
+        rlPass_image = Image.open("rl-Tiefpass.png")
+        img_open = ImageTk.PhotoImage(rlPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
+
         cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied")
         cSelect1.place(x=120, y=20)
 
@@ -420,13 +476,16 @@ def spool_calc(rechner):
         text2.place(x=51, y=70)
         henry_value = Entry(rechner)
         henry_value.place(x=120, y=70)
-        farad= 0
+        farad=0
 
         def get():
             ohm_valueget = ohm_value1.get()
             int_ohm_value = int(ohm_valueget)
             henry_valueget = henry_value.get()
             int_henry_value = int(henry_valueget)
+
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
 
             C = capacitor("RC", int_henry_value, int_ohm_value, farad, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
@@ -455,8 +514,15 @@ def spool_calc(rechner):
 def user_select():
     rechner = Tk()
     rechner.title("Schaltungs Berechner")
-    rechner.geometry("350x150")
+    rechner.geometry("350x350")
+    rechner.configure(background='white')
 
+    htl_image = Image.open("HTL.png")
+    img_open = ImageTk.PhotoImage(htl_image)
+    img_label = Label(image=img_open)
+    img_label.place(x=90, y=120)
+    img_label.configure(background='white')
+    
     cSelect = Label(rechner, text="Was wollen sie berechnen?")
     cSelect.place(x=120, y=20)
 
@@ -470,5 +536,5 @@ def user_select():
     spool_b.place(x=250, y=50)
 
     rechner.mainloop()
-#nibnab
+
 user_select()
