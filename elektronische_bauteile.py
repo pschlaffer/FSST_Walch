@@ -166,7 +166,7 @@ def resistor_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
-        parallel_image = Image.open("Resistor_par.png")
+        parallel_image = Image.open("images/Resistor_par.png")
         img_open = ImageTk.PhotoImage(parallel_image)
         img_label = Label(image=img_open)
         img_label.place(x=130, y=140)
@@ -213,7 +213,7 @@ def resistor_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
-        seriell_image = Image.open("Resistor_ser.png")
+        seriell_image = Image.open("images/Resistor_ser.png")
         img_open = ImageTk.PhotoImage(seriell_image)
         img_label = Label(image=img_open)
         img_label.place(x=130, y=140)
@@ -275,7 +275,7 @@ def capacitor_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
-        lcPass_image = Image.open("LC-pass.png")
+        lcPass_image = Image.open("images/LC-pass.png")
         img_open = ImageTk.PhotoImage(lcPass_image)
         img_label = Label(image=img_open)
         img_label.place(x=40, y=155)
@@ -324,7 +324,7 @@ def capacitor_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
-        rcPass_image = Image.open("RC-Tiefpass.png")
+        rcPass_image = Image.open("images/RC-Tiefpass.png")
         img_open = ImageTk.PhotoImage(rcPass_image)
         img_label = Label(image=img_open)
         img_label.place(x=40, y=155)
@@ -362,7 +362,7 @@ def capacitor_calc(rechner):
         def enter(event):
             get()
 
-        calc_b = Button(rechner, text="Lösen", command=lambda: get(event))
+        calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.place(x=250, y= 90)
         rechner.bind('<Return>', enter)
         rechner.mainloop()
@@ -400,7 +400,7 @@ def spool_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
-        lcPass_image = Image.open("LC-pass.png")
+        lcPass_image = Image.open("images/LC-pass.png")
         img_open = ImageTk.PhotoImage(lcPass_image)
         img_label = Label(image=img_open)
         img_label.place(x=40, y=155)
@@ -449,7 +449,7 @@ def spool_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
-        rlPass_image = Image.open("rl-Tiefpass.png")
+        rlPass_image = Image.open("images/rl-Tiefpass.png")
         img_open = ImageTk.PhotoImage(rlPass_image)
         img_label = Label(image=img_open)
         img_label.place(x=40, y=155)
@@ -517,7 +517,7 @@ def user_select():
     rechner.geometry("350x350")
     rechner.configure(background='white')
 
-    htl_image = Image.open("HTL.png")
+    htl_image = Image.open("images/HTL.png")
     img_open = ImageTk.PhotoImage(htl_image)
     img_label = Label(image=img_open)
     img_label.place(x=90, y=120)
