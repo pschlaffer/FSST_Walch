@@ -4,6 +4,7 @@
 
 from tkinter import *
 import math as m
+
 class components:
     def __init__(self, tolerance, impedance, voltage, frequenz, phi):
         self.tolerance = tolerance
@@ -24,9 +25,13 @@ class resistor(components):
         if (R.select == "P"):
             # Berechnung
             R12 = (R.ohm_valueR1 * R.ohm_valueR2)/(R.ohm_valueR1 + R.ohm_valueR2)
-            R12_round = round(R12, 3)
+            R12_round = round(R12, 1)
+            if R12_round < 1000:
+                R12_new = R12_round, "Ω"
+            if R12_round >= 1000:
+                R12_new = R12_round * m.pow(10, -3), "kΩ"
             # Anzeige
-            iResult = Label(rechner, text=R12_round)
+            iResult = Label(rechner, text=R12_new)
             iResult.place(x=120, y=90)
             
             def renew_calc():
@@ -39,8 +44,12 @@ class resistor(components):
         else:
             # Berechnung
             R12 = R.ohm_valueR1 + R.ohm_valueR2
+            if R12 < 1000:
+                R12_new = R12, "Ω"
+            if R12 >= 1000:
+                R12_new = R12 * m.pow(10, -3), "kΩ"
             # Anzeige
-            iResult = Label(rechner, text=R12)
+            iResult = Label(rechner, text=R12_new)
             iResult.place(x=120, y=90)
 
             def renew_calc():
@@ -63,9 +72,13 @@ class capacitor(components):
             # Berechnung
             nanofarad = (m.pow(10, -9)*C.farad_value1)
             fg = 1/(2*m.pi*C.ohm_valueR1*nanofarad)
-            fg_round = round(fg, 3)
+            fg_round = round(fg, 0)
+            if fg_round < 1000:
+                fg_round_new = fg_round, "Hz"
+            if fg_round >= 1000:
+                fg_round_new = fg_round * m.pow(10, -3), "kHz"
             # Anzeige
-            iResult = Label(rechner, text=fg_round)
+            iResult = Label(rechner, text=fg_round_new)
             iResult.place(x=120, y=90)
 
             def renew_calc():
@@ -80,9 +93,13 @@ class capacitor(components):
             mHenry    = (m.pow(10, -3)*C.henry_value1)
             nanofarad = (m.pow(10, -9)*C.farad_value1)
             fg = 1/(2*m.pi*m.sqrt(mHenry*nanofarad))
-            fg_round = round(fg, 3)
+            fg_round = round(fg, 0)
+            if fg_round < 1000:
+                fg_round_new = fg_round, "Hz"
+            if fg_round >= 1000:
+                fg_round_new = fg_round * m.pow(10, -3), "kHz"
             # Anzeige
-            iResult = Label(rechner, text=fg_round)
+            iResult = Label(rechner, text=fg_round_new)
             iResult.place(x=120, y=90)
 
             def renew_calc():
@@ -106,9 +123,13 @@ class spool(components):
             mHenry    = (m.pow(10, -3)*L.henry_value1)
             nanofarad = (m.pow(10, -9)*L.farad_value1)
             fg = 1/(2*m.pi*m.sqrt(mHenry*nanofarad))
-            fg_round = round(fg, 3)
+            fg_round = round(fg, 0)
+            if fg_round < 1000:
+                fg_round_new = fg_round, "Hz"
+            if fg_round >= 1000:
+                fg_round_new = fg_round * m.pow(10, -3), "kHz"
             # Anzeige
-            iResult = Label(rechner, text=fg_round)
+            iResult = Label(rechner, text=fg_round_new)
             iResult.place(x=120, y=90)
 
             def renew_calc():
@@ -122,9 +143,13 @@ class spool(components):
             # Berechnung
             mHenry = (m.pow(10, -3)*L.henry_value1)
             fg = L.ohm_valueR1/(2*m.pi*mHenry)
-            fg_round = round(fg, 3)
+            fg_round = round(fg, 0)
+            if fg_round < 1000:
+                fg_round_new = fg_round, "Hz"
+            if fg_round >= 1000:
+                fg_round_new = fg_round * m.pow(10, -3), "kHz"
             # Anzeige
-            iResult = Label(rechner, text=fg_round)
+            iResult = Label(rechner, text=fg_round_new)
             iResult.place(x=120, y=90)
 
             def renew_calc():
@@ -165,8 +190,13 @@ def resistor_calc(rechner):
             R = resistor("P", int_ohm_valueR1, int_ohm_valueR2, 10, 100, 12, 50, 1)
             R.current(R, rechner)
 
+        def enter(event):
+            get()
+
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.place(x=250, y= 90)
+        rechner.bind('<Return>', enter)
+        rechner.mainloop()
 
     # Serielle Schaltung
     def seriell():
@@ -197,9 +227,16 @@ def resistor_calc(rechner):
 
             R = resistor("S", int_ohm_valueR1, int_ohm_valueR2, 10, 100, 12, 50, 1)
             R.current(R, rechner)
+        
+        def enter(event):
+            get()
 
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.place(x=250, y= 90)
+        rechner.bind('<Return>', enter)
+        rechner.mainloop()
+    
+        
 
     # Widerstand auswählen Frame
     for widgets in rechner.winfo_children():
@@ -248,9 +285,14 @@ def capacitor_calc(rechner):
             C = capacitor("LC", int_farad_value, ohm_valueR1, int_henry_value, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
+        def enter(event):
+            get()
+        
         calc_b = Button(rechner, text="Lösen", command=get)
-        calc_b.place(x=250, y= 90)
- 
+        calc_b.place(x=250, y=90)
+        rechner.bind('<Return>', enter)
+        rechner.mainloop()
+
     # RC Glied
     def RCglied():
         for widgets in rechner.winfo_children():
@@ -282,8 +324,13 @@ def capacitor_calc(rechner):
             C = capacitor("RC", int_farad_value, int_ohm_value, henry, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
-        calc_b = Button(rechner, text="Lösen", command=get)
+        def enter(event):
+            get()
+
+        calc_b = Button(rechner, text="Lösen", command=lambda: get(event))
         calc_b.place(x=250, y= 90)
+        rechner.bind('<Return>', enter)
+        rechner.mainloop()
 
     for widgets in rechner.winfo_children():
         widgets.destroy()
@@ -345,8 +392,13 @@ def spool_calc(rechner):
             C = capacitor("LC", int_farad_value, ohm_valueR1, int_henry_value, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
+        def enter(event):
+            get()
+
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.place(x=250, y= 90)
+        rechner.bind('<Return>', enter)
+        rechner.mainloop()
 
     # RL Glied
     def RLglied():
@@ -379,8 +431,13 @@ def spool_calc(rechner):
             C = capacitor("RC", int_henry_value, int_ohm_value, farad, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
+        def enter(event):
+            get()
+
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.place(x=250, y= 90)
+        rechner.bind('<Return>', enter)
+        rechner.mainloop()
     
     for widgets in rechner.winfo_children():
         widgets.destroy()
