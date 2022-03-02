@@ -3,6 +3,7 @@
 # FSST - Walch
 
 from tkinter import *
+from PIL import ImageTk, Image
 import math as m
 
 class components:
@@ -165,6 +166,12 @@ def resistor_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
+        parallel_image = Image.open("Resistor_par.png")
+        img_open = ImageTk.PhotoImage(parallel_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=130, y=140)
+        img_label.configure(background='white')
+
         cSelect1 = Label(rechner, text="Parallel Schaltung Rechner")
         cSelect1.place(x=120, y=20)
 
@@ -205,6 +212,12 @@ def resistor_calc(rechner):
     def seriell():
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        seriell_image = Image.open("Resistor_ser.png")
+        img_open = ImageTk.PhotoImage(seriell_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=130, y=140)
+        img_label.configure(background='white')
 
         cSelect1 = Label(rechner, text="Reihenschaltung Rechner")
         cSelect1.place(x=110, y=20)
@@ -262,6 +275,12 @@ def capacitor_calc(rechner):
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
+        lcPass_image = Image.open("LC-pass.png")
+        img_open = ImageTk.PhotoImage(lcPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
+
         cSelect1 = Label(rechner, text="Grenzfrequenz LC Glied")
         cSelect1.place(x=120, y=20)
 
@@ -304,6 +323,12 @@ def capacitor_calc(rechner):
     def RCglied():
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        rcPass_image = Image.open("RC-Tiefpass.png")
+        img_open = ImageTk.PhotoImage(rcPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
 
         cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied")
         cSelect1.place(x=120, y=20)
@@ -360,7 +385,7 @@ def spool_calc(rechner):
     def spool_select():
         for widgets in rechner.winfo_children():
             widgets.destroy()
-        
+
         cSelect = Label(rechner, text="Ihre Schaltungsart?")
         cSelect.place(x=120, y=20)
 
@@ -374,6 +399,12 @@ def spool_calc(rechner):
     def LCglied():
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        lcPass_image = Image.open("LC-pass.png")
+        img_open = ImageTk.PhotoImage(lcPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
 
         cSelect1 = Label(rechner, text="Grenzfrequenz LC Glied")
         cSelect1.place(x=120, y=20)
@@ -417,6 +448,18 @@ def spool_calc(rechner):
     def RLglied():
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        rlPass_image = Image.open("rl-Tiefpass.png")
+        img_open = ImageTk.PhotoImage(rlPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
+
+        rlPass_image = Image.open("rl-Tiefpass.png")
+        img_open = ImageTk.PhotoImage(rlPass_image)
+        img_label = Label(image=img_open)
+        img_label.place(x=40, y=155)
+        img_label.configure(background='white')
 
         cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied")
         cSelect1.place(x=120, y=20)
@@ -471,8 +514,15 @@ def spool_calc(rechner):
 def user_select():
     rechner = Tk()
     rechner.title("Schaltungs Berechner")
-    rechner.geometry("350x300")
+    rechner.geometry("350x350")
+    rechner.configure(background='white')
 
+    htl_image = Image.open("HTL.png")
+    img_open = ImageTk.PhotoImage(htl_image)
+    img_label = Label(image=img_open)
+    img_label.place(x=90, y=120)
+    img_label.configure(background='white')
+    
     cSelect = Label(rechner, text="Was wollen sie berechnen?")
     cSelect.place(x=120, y=20)
 
