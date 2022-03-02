@@ -187,6 +187,9 @@ def resistor_calc(rechner):
             ohm_valuegetR2 = ohm_valueR2.get()
             int_ohm_valueR2 = int(ohm_valuegetR2)
 
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
+
             R = resistor("P", int_ohm_valueR1, int_ohm_valueR2, 10, 100, 12, 50, 1)
             R.current(R, rechner)
 
@@ -225,6 +228,9 @@ def resistor_calc(rechner):
             ohm_valuegetR2 = ohm_valueR2.get()
             int_ohm_valueR2 = int(ohm_valuegetR2)
 
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
+
             R = resistor("S", int_ohm_valueR1, int_ohm_valueR2, 10, 100, 12, 50, 1)
             R.current(R, rechner)
         
@@ -236,8 +242,6 @@ def resistor_calc(rechner):
         rechner.bind('<Return>', enter)
         rechner.mainloop()
     
-        
-
     # Widerstand auswählen Frame
     for widgets in rechner.winfo_children():
         widgets.destroy()
@@ -282,6 +286,9 @@ def capacitor_calc(rechner):
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
 
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
+
             C = capacitor("LC", int_farad_value, ohm_valueR1, int_henry_value, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
@@ -320,6 +327,9 @@ def capacitor_calc(rechner):
             int_ohm_value = int(ohm_valueget)
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
+
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
 
             C = capacitor("RC", int_farad_value, int_ohm_value, henry, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
@@ -389,6 +399,9 @@ def spool_calc(rechner):
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
 
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
+
             C = capacitor("LC", int_farad_value, ohm_valueR1, int_henry_value, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
@@ -420,13 +433,16 @@ def spool_calc(rechner):
         text2.place(x=51, y=70)
         henry_value = Entry(rechner)
         henry_value.place(x=120, y=70)
-        farad= 0
+        farad=0
 
         def get():
             ohm_valueget = ohm_value1.get()
             int_ohm_value = int(ohm_valueget)
             henry_valueget = henry_value.get()
             int_henry_value = int(henry_valueget)
+
+            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            iResult.place(x=120, y=90)
 
             C = capacitor("RC", int_henry_value, int_ohm_value, farad, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
@@ -455,7 +471,7 @@ def spool_calc(rechner):
 def user_select():
     rechner = Tk()
     rechner.title("Schaltungs Berechner")
-    rechner.geometry("350x150")
+    rechner.geometry("350x300")
 
     cSelect = Label(rechner, text="Was wollen sie berechnen?")
     cSelect.place(x=120, y=20)
