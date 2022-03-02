@@ -2,6 +2,7 @@
 # 21.02.2022
 # FSST - Walch
 
+# Libarys
 from tkinter import *
 from PIL import ImageTk, Image
 import math as m
