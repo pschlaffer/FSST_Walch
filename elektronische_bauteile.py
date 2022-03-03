@@ -34,12 +34,14 @@ class resistor(components):
                 R12_new = R12_round, "Ω"
             if R12_round >= 1000:
                 R12_new = R12_round * m.pow(10, -3), "kΩ"
+            
             # Anzeige
             iResult = Label(rechner, text=R12_new)
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
             
-            def renew_calc():
+            # Rechner Neustarten
+            def renew_calc():   
                 rechner.destroy()
                 user_select()
             new_calc = Button(rechner, text="Neu", command=renew_calc)
@@ -54,11 +56,13 @@ class resistor(components):
                 R12_new = R12, "Ω"
             if R12 >= 1000:
                 R12_new = R12 * m.pow(10, -3), "kΩ"
+            
             # Anzeige
             iResult = Label(rechner, text=R12_new)
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Rechner Neustarten
             def renew_calc():
                 rechner.destroy()
                 user_select()
@@ -85,11 +89,13 @@ class capacitor(components):
                 fg_round_new = fg_round, "Hz"
             if fg_round >= 1000:
                 fg_round_new = fg_round * m.pow(10, -3), "kHz"
+            
             # Anzeige
             iResult = Label(rechner, text=fg_round_new)
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
    
+            # Rechner Neustarten
             def renew_calc():
                 rechner.destroy()
                 user_select()
@@ -108,11 +114,13 @@ class capacitor(components):
                 fg_round_new = fg_round, "Hz"
             if fg_round >= 1000:
                 fg_round_new = fg_round * m.pow(10, -3), "kHz"
+            
             # Anzeige
             iResult = Label(rechner, text=fg_round_new)
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Rechner Neustarten
             def renew_calc():
                 rechner.destroy()
                 user_select()
@@ -140,11 +148,13 @@ class spool(components):
                 fg_round_new = fg_round, "Hz"
             if fg_round >= 1000:
                 fg_round_new = fg_round * m.pow(10, -3), "kHz"
+            
             # Anzeige
             iResult = Label(rechner, text=fg_round_new)
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Rechner Neustarten
             def renew_calc():
                 rechner.destroy()
                 user_select()
@@ -162,11 +172,13 @@ class spool(components):
                 fg_round_new = fg_round, "Hz"
             if fg_round >= 1000:
                 fg_round_new = fg_round * m.pow(10, -3), "kHz"
+            
             # Anzeige
             iResult = Label(rechner, text=fg_round_new)
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Rechner Neustarten
             def renew_calc():
                 rechner.destroy()
                 user_select()
@@ -178,6 +190,7 @@ class spool(components):
 def resistor_calc(rechner):
     # Parallel Schaltung
     def parallel():
+        # Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
@@ -187,7 +200,8 @@ def resistor_calc(rechner):
         img_label = Label(image=img_open)
         img_label.place(x=130, y=140)
         img_label.configure(background='white')
-
+        
+        # Berechnungs GUI
         cSelect1 = Label(rechner, text="Parallel Schaltung Rechner")
         cSelect1.configure(bg="white")
         cSelect1.place(x=120, y=20)
@@ -208,35 +222,40 @@ def resistor_calc(rechner):
         ohm_valueR2 = Entry(rechner)
         ohm_valueR2.place(x=120, y=70)
 
+        # Werte einlesen und an Klassen übergeben
         def get():
             ohm_valuegetR1 = ohm_valueR1.get()
             int_ohm_valueR1 = int(ohm_valuegetR1)
             ohm_valuegetR2 = ohm_valueR2.get()
             int_ohm_valueR2 = int(ohm_valuegetR2)
 
-            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            # Lösungsfeld wieder säubern
+            iResult = Label(rechner, text="                           ")
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Werte zur Berechnung in Klasse schicken
             R = resistor("P", int_ohm_valueR1, int_ohm_valueR2, 10, 100, 12, 50, 1)
             R.current(R, rechner)
 
+        # Button bzw. Entertaste zur Berechnung
         def enter(event):
             get()
-
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y= 90)
-
+        rechner.bind('<Return>', enter)
+  
+        # Zurück Option
         back_b = Button(rechner, text="Zurück", command=lambda:resistor_calc(rechner))
         back_b.configure(bg="white")
         back_b.place(x=300, y=320)
 
-        rechner.bind('<Return>', enter)
         rechner.mainloop()
 
     # Serielle Schaltung
     def seriell():
+        # Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
@@ -247,6 +266,7 @@ def resistor_calc(rechner):
         img_label.place(x=130, y=140)
         img_label.configure(background='white')
 
+        # Berechnungs GUI
         cSelect1 = Label(rechner, text="Reihenschaltung Rechner")
         cSelect1.configure(bg="white")
         cSelect1.place(x=110, y=20)
@@ -267,37 +287,42 @@ def resistor_calc(rechner):
         ohm_valueR2 = Entry(rechner)
         ohm_valueR2.place(x=120, y=70)
 
+        # Werte einlesen und an Klasse übergeben
         def get():
             ohm_valuegetR1 = ohm_valueR1.get()
             int_ohm_valueR1 = int(ohm_valuegetR1)
             ohm_valuegetR2 = ohm_valueR2.get()
             int_ohm_valueR2 = int(ohm_valuegetR2)
 
-            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            # Lösungsfeld wieder säubern
+            iResult = Label(rechner, text="                          ") 
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Werte zur Berechnung in Klasse schicken
             R = resistor("S", int_ohm_valueR1, int_ohm_valueR2, 10, 100, 12, 50, 1)
             R.current(R, rechner)
         
+        # Button bzw. Entertaste zur Berechnung
         def enter(event):
             get()
-
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y= 90)
+        rechner.bind('<Return>', enter)
 
+        # Zurück option
         back_b = Button(rechner, text="Zurück", command=lambda:resistor_calc(rechner))
         back_b.configure(bg="white")
         back_b.place(x=300, y=320)
 
-        rechner.bind('<Return>', enter)
         rechner.mainloop()
     
-    # Widerstand auswählen Frame
+    # Alle widgets / Labels löschen
     for widgets in rechner.winfo_children():
         widgets.destroy()
-    
+
+    # Schaltungsart auswählen Frame
     cSelect1 = Label(rechner, text="Ihre Schaltungsart?")
     cSelect1.configure(bg="white")
     cSelect1.place(x=120, y=20)
@@ -310,10 +335,10 @@ def resistor_calc(rechner):
     seriell_b.configure(bg="white")
     seriell_b.place(x=180, y=50)
 
+    # Zurück Option
     def back():
         rechner.destroy()
         user_select()
-
     back_b = Button(rechner, text="Zurück", command=back)
     back_b.configure(bg="white")
     back_b.place(x=300, y=320)
@@ -322,6 +347,7 @@ def resistor_calc(rechner):
 def capacitor_calc(rechner):
     # LC Glied
     def LCglied():
+        # Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
@@ -332,6 +358,7 @@ def capacitor_calc(rechner):
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
+        # Berechnungs GUI
         cSelect1 = Label(rechner, text="Grenzfrequenz LC Glied")
         cSelect1.configure(bg="white")
         cSelect1.place(x=120, y=20)
@@ -351,38 +378,42 @@ def capacitor_calc(rechner):
         text2.place(x=20, y=70)
         farad_value1 = Entry(rechner)
         farad_value1.place(x=120, y=70)
-
         ohm_valueR1 = 0
 
+        # Werte einlesen und an Klasse übergeben
         def get():
             henry_valueget = henry_value1.get()
             int_henry_value = int(henry_valueget)
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
 
-            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            # Lösungsfeld wieder säubern
+            iResult = Label(rechner, text="                       ") 
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Werte zur Berechnung in Klasse schicken
             C = capacitor("LC", int_farad_value, ohm_valueR1, int_henry_value, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
+        # Button bzw. Entertaste zur Berechnung
         def enter(event):
             get()
-        
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y=90)
+        rechner.bind('<Return>', enter)
 
+        # Zurück Option
         back_b = Button(rechner, text="Zurück", command=lambda:capacitor_calc(rechner))
         back_b.configure(bg="white")
         back_b.place(x=300, y=320)
 
-        rechner.bind('<Return>', enter)
         rechner.mainloop()
 
     # RC Glied
     def RCglied():
+        # Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
@@ -393,6 +424,7 @@ def capacitor_calc(rechner):
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
+        # Berechnugs GUI
         cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied")
         cSelect1.configure(bg="white")
         cSelect1.place(x=120, y=20)
@@ -414,36 +446,42 @@ def capacitor_calc(rechner):
         farad_value1.place(x=120, y=70)
         henry = 0
 
+        # Werte einlesen und an Klasse übergeben
         def get():
             ohm_valueget = ohm_value1.get()
             int_ohm_value = int(ohm_valueget)
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
 
-            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            # Lösungsfeld wieder säubern
+            iResult = Label(rechner, text="                          ") 
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Werte zur Berechnung in Klasse schicken
             C = capacitor("RC", int_farad_value, int_ohm_value, henry, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
+        # Button bzw. Entertaste zur Berechnung
         def enter(event):
             get()
-
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y= 90)
+        rechner.bind('<Return>', enter)
 
+        # Zurück Option
         back_b = Button(rechner, text="Zurück", command=lambda:capacitor_calc(rechner))
         back_b.configure(bg="white")
         back_b.place(x=300, y=320)
 
-        rechner.bind('<Return>', enter)
         rechner.mainloop()
 
+    # Alle widgets / Labels löschen
     for widgets in rechner.winfo_children():
         widgets.destroy()
     
+    # Schaltungsart auswählen Frame
     cSelect = Label(rechner, text="Ihre Schaltungsart?")
     cSelect.configure(bg="white")
     cSelect.place(x=120, y=20)
@@ -456,10 +494,10 @@ def capacitor_calc(rechner):
     RC_b.configure(bg="white")
     RC_b.place(x=180, y=50)
 
+    # Zurück Option
     def back():
         rechner.destroy()
         user_select()
-
     back_b = Button(rechner, text="Zurück", command=back)
     back_b.configure(bg="white")
     back_b.place(x=300, y=320)
@@ -468,6 +506,7 @@ def capacitor_calc(rechner):
 def spool_calc(rechner):
     # LC Glied
     def LCglied():
+        # Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
@@ -478,6 +517,7 @@ def spool_calc(rechner):
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
+        # Berechnungs GUI
         cSelect1 = Label(rechner, text="Grenzfrequenz LC Glied")
         cSelect1.configure(bg="white")
         cSelect1.place(x=120, y=20)
@@ -497,38 +537,42 @@ def spool_calc(rechner):
         text2.place(x=20, y=70)
         farad_value1 = Entry(rechner)
         farad_value1.place(x=120, y=70)
-
         ohm_valueR1 = 0
 
+        # Werte einlesen und an Klasse übergeben
         def get():
             henry_valueget = henry_value1.get()
             int_henry_value = int(henry_valueget)
             farad_valueget = farad_value1.get()
             int_farad_value = int(farad_valueget)
 
-            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            # Lösungsfeld wieder säubern
+            iResult = Label(rechner, text="                            ")
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Werte zur Berechnung in Klasse schicken
             C = capacitor("LC", int_farad_value, ohm_valueR1, int_henry_value, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
+        # Button zur Berechnung bzw. Entertaste
         def enter(event):
             get()
-
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y= 90)
+        rechner.bind('<Return>', enter)
 
+        # Zurück Option
         back_b = Button(rechner, text="Zurück", command=lambda:spool_calc(rechner))
         back_b.configure(bg="white")
         back_b.place(x=300, y=320)
 
-        rechner.bind('<Return>', enter)
         rechner.mainloop()
 
     # RL Glied
     def RLglied():
+        # Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
 
@@ -566,36 +610,42 @@ def spool_calc(rechner):
         henry_value.place(x=120, y=70)
         farad=0
 
+        # Werte einlesen und an Klasse übergeben
         def get():
             ohm_valueget = ohm_value1.get()
             int_ohm_value = int(ohm_valueget)
             henry_valueget = henry_value.get()
             int_henry_value = int(henry_valueget)
 
-            iResult = Label(rechner, text="                       ") # Berechnneten wert wieder auf null setzen
+            # Lösungsfeld wieder säubern
+            iResult = Label(rechner, text="                           ")
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
 
+            # Werte zur Berechnung in Klasse schicken
             C = capacitor("RC", int_henry_value, int_ohm_value, farad, 10, 350, 12 ,60 , 1)
             C.current(C, rechner)
 
+        # Button bzw. Entertaste zur Berechnung
         def enter(event):
             get()
-
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(background="white")
         calc_b.place(x=250, y= 90)
         rechner.bind('<Return>', enter)
 
+        # Zurück Option
         back_b = Button(rechner, text="Zurück", command=lambda:spool_calc(rechner))
         back_b.configure(bg="white")
         back_b.place(x=300, y=320)
 
         rechner.mainloop()
-    
+
+    # Alle widgets / labels löschen
     for widgets in rechner.winfo_children():
         widgets.destroy()
     
+    # Schaltungsart auswählen Frame
     cSelect = Label(rechner, text="Ihre Schaltungsart?")
     cSelect.configure(background="white")
     cSelect.place(x=120, y=20)
@@ -608,17 +658,16 @@ def spool_calc(rechner):
     RL_b.configure(background="white")
     RL_b.place(x=180, y=50)
 
+    # Zurück Option
     def back():
         rechner.destroy()
         user_select()
-
     back_b = Button(rechner, text="Zurück", command=back)
     back_b.configure(bg="white")
     back_b.place(x=300, y=320)
 
 # Auswahl fenster
 def user_select():
-
     # Tkinter Fenster erstellen
     rechner = Tk()
     rechner.title("Schaltungs Berechner")
@@ -636,6 +685,7 @@ def user_select():
     img_label.place(x=80, y=120)
     img_label.configure(background='white', pady=0, padx=0, bd=0)
     
+    # Auswahl menü
     cSelect = Label(rechner, text="Was wollen sie berechnen?")
     cSelect.configure(bg="white",font=("Calibri", 15, "bold"))
     cSelect.place(x=55, y=20)
