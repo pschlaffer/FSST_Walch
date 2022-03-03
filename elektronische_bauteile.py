@@ -505,7 +505,7 @@ def spool_calc(rechner):
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
-        cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied")
+        cSelect1 = Label(rechner, text="Grenzfrequenz RL Glied")
         cSelect1.configure(bg="white")
         cSelect1.place(x=120, y=20)
 
@@ -565,11 +565,13 @@ def spool_calc(rechner):
 
 # Auswahl fenster
 def user_select():
+    # Tkinter Fenster erstellen
     rechner = Tk()
     rechner.title("Schaltungs Berechner")
     rechner.geometry("350x350")
     rechner.configure(background='white')
 
+    # Webbroser öffnen mit HTL Seite
     def HTL_link():
         webbrowser.open_new(r"https://htlinn.ac.at/")
 
