@@ -559,11 +559,13 @@ def spool_calc(rechner):
 
 # Auswahl fenster
 def user_select():
+    # Tkinter Fenster erstellen
     rechner = Tk()
     rechner.title("Schaltungs Berechner")
     rechner.geometry("350x350")
     rechner.configure(background='white')
 
+    # Webbroser öffnen mit HTL Seite
     def HTL_link():
         webbrowser.open_new(r"https://htlinn.ac.at/")
 
