@@ -353,6 +353,7 @@ def capacitor_calc(rechner):
             get()
         
         calc_b = Button(rechner, text="Lösen", command=get)
+        calc_b.configure(bg="white")
         calc_b.place(x=250, y=90)
         rechner.bind('<Return>', enter)
         rechner.mainloop()
@@ -580,20 +581,20 @@ def user_select():
     img_label.configure(background='white', pady=0, padx=0, bd=0)
     
     cSelect = Label(rechner, text="Was wollen sie berechnen?")
-    cSelect.configure(bg="white",font=("Calibri", 15))
-    cSelect.place(x=60, y=20)
+    cSelect.configure(bg="white",font=("Calibri", 15, "bold"))
+    cSelect.place(x=55, y=20)
 
     resistor_b = Button(rechner, text="Widerstand", command=lambda:resistor_calc(rechner))
-    resistor_b.configure(bg="white")
-    resistor_b.place(x=50, y=50)
+    resistor_b.configure(bg="white", bd=1)
+    resistor_b.place(x=50, y=55)
 
     capacitor_b = Button(rechner, text="Kondensator", command=lambda:capacitor_calc(rechner))
-    capacitor_b.configure(background="white")
-    capacitor_b.place(x=150, y=50)
+    capacitor_b.configure(background="white", bd=1)
+    capacitor_b.place(x=150, y=55)
 
     spool_b = Button(rechner, text="Spule", command=lambda:spool_calc(rechner))
-    spool_b.configure(background='white')
-    spool_b.place(x=250, y=50)
+    spool_b.configure(background='white',bd=1)
+    spool_b.place(x=250, y=55)
 
     rechner.mainloop()
 
