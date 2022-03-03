@@ -6,6 +6,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import math as m
+import webbrowser
 
 # Klassen
 class components:
@@ -568,19 +569,22 @@ def user_select():
     rechner.geometry("350x350")
     rechner.configure(background='white')
 
+    def HTL_link():
+        webbrowser.open_new(r"https://htlinn.ac.at/")
+
     # Logo einfügen
     htl_image = Image.open("images/HTL.jpg")
     img_open = ImageTk.PhotoImage(htl_image)
-    img_label = Label(image=img_open)
+    img_label = Button(image=img_open, command=HTL_link)
     img_label.place(x=80, y=120)
-    img_label.configure(background='white')
+    img_label.configure(background='white', pady=0, padx=0, bd=0)
     
     cSelect = Label(rechner, text="Was wollen sie berechnen?")
-    cSelect.configure(background="white")
-    cSelect.place(x=110, y=20)
+    cSelect.configure(bg="white",font=("Calibri", 15))
+    cSelect.place(x=60, y=20)
 
     resistor_b = Button(rechner, text="Widerstand", command=lambda:resistor_calc(rechner))
-    resistor_b.configure(background="white")
+    resistor_b.configure(bg="white")
     resistor_b.place(x=50, y=50)
 
     capacitor_b = Button(rechner, text="Kondensator", command=lambda:capacitor_calc(rechner))
