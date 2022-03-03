@@ -89,7 +89,7 @@ class capacitor(components):
             iResult = Label(rechner, text=fg_round_new)
             iResult.configure(bg="white")
             iResult.place(x=120, y=90)
-
+   
             def renew_calc():
                 rechner.destroy()
                 user_select()
@@ -227,6 +227,11 @@ def resistor_calc(rechner):
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y= 90)
+
+        back_b = Button(rechner, text="Zurück", command=lambda:resistor_calc(rechner))
+        back_b.configure(bg="white")
+        back_b.place(x=300, y=320)
+
         rechner.bind('<Return>', enter)
         rechner.mainloop()
 
@@ -281,6 +286,11 @@ def resistor_calc(rechner):
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y= 90)
+
+        back_b = Button(rechner, text="Zurück", command=lambda:resistor_calc(rechner))
+        back_b.configure(bg="white")
+        back_b.place(x=300, y=320)
+
         rechner.bind('<Return>', enter)
         rechner.mainloop()
     
@@ -299,6 +309,14 @@ def resistor_calc(rechner):
     seriell_b = Button(rechner, text="Seriell", command=seriell)
     seriell_b.configure(bg="white")
     seriell_b.place(x=180, y=50)
+
+    def back():
+        rechner.destroy()
+        user_select()
+
+    back_b = Button(rechner, text="Zurück", command=back)
+    back_b.configure(bg="white")
+    back_b.place(x=300, y=320)
 
 # Grenzfrequenz Berechnung Kondensator
 def capacitor_calc(rechner):
@@ -355,6 +373,11 @@ def capacitor_calc(rechner):
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y=90)
+
+        back_b = Button(rechner, text="Zurück", command=lambda:capacitor_calc(rechner))
+        back_b.configure(bg="white")
+        back_b.place(x=300, y=320)
+
         rechner.bind('<Return>', enter)
         rechner.mainloop()
 
@@ -362,7 +385,6 @@ def capacitor_calc(rechner):
     def RCglied():
         for widgets in rechner.winfo_children():
             widgets.destroy()
-
 
         # Schaltungsbild einfügen
         rcPass_image = Image.open("images/RC-Tiefpass.png")
@@ -411,6 +433,11 @@ def capacitor_calc(rechner):
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y= 90)
+
+        back_b = Button(rechner, text="Zurück", command=lambda:capacitor_calc(rechner))
+        back_b.configure(bg="white")
+        back_b.place(x=300, y=320)
+
         rechner.bind('<Return>', enter)
         rechner.mainloop()
 
@@ -428,6 +455,14 @@ def capacitor_calc(rechner):
     RC_b = Button(rechner, text="RC Glied", command=RCglied)
     RC_b.configure(bg="white")
     RC_b.place(x=180, y=50)
+
+    def back():
+        rechner.destroy()
+        user_select()
+
+    back_b = Button(rechner, text="Zurück", command=back)
+    back_b.configure(bg="white")
+    back_b.place(x=300, y=320)
 
 # Grenzfrequenz Berechnung Spule
 def spool_calc(rechner):
@@ -484,6 +519,11 @@ def spool_calc(rechner):
         calc_b = Button(rechner, text="Lösen", command=get)
         calc_b.configure(bg="white")
         calc_b.place(x=250, y= 90)
+
+        back_b = Button(rechner, text="Zurück", command=lambda:spool_calc(rechner))
+        back_b.configure(bg="white")
+        back_b.place(x=300, y=320)
+
         rechner.bind('<Return>', enter)
         rechner.mainloop()
 
@@ -546,6 +586,11 @@ def spool_calc(rechner):
         calc_b.configure(background="white")
         calc_b.place(x=250, y= 90)
         rechner.bind('<Return>', enter)
+
+        back_b = Button(rechner, text="Zurück", command=lambda:spool_calc(rechner))
+        back_b.configure(bg="white")
+        back_b.place(x=300, y=320)
+
         rechner.mainloop()
     
     for widgets in rechner.winfo_children():
@@ -563,8 +608,17 @@ def spool_calc(rechner):
     RL_b.configure(background="white")
     RL_b.place(x=180, y=50)
 
+    def back():
+        rechner.destroy()
+        user_select()
+
+    back_b = Button(rechner, text="Zurück", command=back)
+    back_b.configure(bg="white")
+    back_b.place(x=300, y=320)
+
 # Auswahl fenster
 def user_select():
+
     # Tkinter Fenster erstellen
     rechner = Tk()
     rechner.title("Schaltungs Berechner")
