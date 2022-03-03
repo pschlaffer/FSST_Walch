@@ -493,19 +493,13 @@ def spool_calc(rechner):
             widgets.destroy()
 
         # Schaltungsbild einfügen
-        rlPass_image = Image.open("images/rl-Tiefpass.png")
+        rlPass_image = Image.open("images/RL-Hochpass.png")
         img_open = ImageTk.PhotoImage(rlPass_image)
         img_label = Label(image=img_open)
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
-        rlPass_image = Image.open("images/rl-Tiefpass.png")
-        img_open = ImageTk.PhotoImage(rlPass_image)
-        img_label = Label(image=img_open)
-        img_label.place(x=40, y=155)
-        img_label.configure(background='white')
-
-        cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied")
+        cSelect1 = Label(rechner, text="Grenzfrequenz RL Glied")
         cSelect1.configure(bg="white")
         cSelect1.place(x=120, y=20)
 
