@@ -589,6 +589,7 @@ def spool_calc(rechner):
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
+        # Berechnugs GUI
         cSelect1 = Label(rechner, text="Grenzfrequenz RL Glied")
         cSelect1.configure(bg="white")
         cSelect1.place(x=120, y=20)
