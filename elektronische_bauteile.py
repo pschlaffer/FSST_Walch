@@ -41,10 +41,7 @@ class resistor(components):
             iResult.place(x=120, y=90)
             
             # Rechner Neustarten
-            def renew_calc():   
-                rechner.destroy()
-                user_select()
-            new_calc = Button(rechner, text="Neu", command=renew_calc)
+            new_calc = Button(rechner, text="Neu", command=lambda:user_select())
             new_calc.configure(bg="white")
             new_calc.place(x=250, y=118)
         
@@ -63,10 +60,7 @@ class resistor(components):
             iResult.place(x=120, y=90)
 
             # Rechner Neustarten
-            def renew_calc():
-                rechner.destroy()
-                user_select()
-            new_calc = Button(rechner, text="Neu", command=renew_calc)
+            new_calc = Button(rechner, text="Neu", command=lambda:user_select())
             new_calc.configure(bg="white")
             new_calc.place(x=250, y=118)
 
@@ -96,10 +90,7 @@ class capacitor(components):
             iResult.place(x=120, y=90)
    
             # Rechner Neustarten
-            def renew_calc():
-                rechner.destroy()
-                user_select()
-            new_calc = Button(rechner, text="Neu", command=renew_calc)
+            new_calc = Button(rechner, text="Neu", command=lambda:user_select())
             new_calc.configure(bg="white")
             new_calc.place(x=250, y=118)
     
@@ -121,10 +112,7 @@ class capacitor(components):
             iResult.place(x=120, y=90)
 
             # Rechner Neustarten
-            def renew_calc():
-                rechner.destroy()
-                user_select()
-            new_calc = Button(rechner, text="Neu", command=renew_calc)
+            new_calc = Button(rechner, text="Neu", command=lambda:user_select())
             new_calc.configure(bg="white")
             new_calc.place(x=250, y=118)
 
@@ -155,10 +143,7 @@ class spool(components):
             iResult.place(x=120, y=90)
 
             # Rechner Neustarten
-            def renew_calc():
-                rechner.destroy()
-                user_select()
-            new_calc = Button(rechner, text="Neu", command=renew_calc)
+            new_calc = Button(rechner, text="Neu", command=lambda:user_select())
             new_calc.configure(bg="white")
             new_calc.place(x=250, y=118)
 
@@ -179,15 +164,12 @@ class spool(components):
             iResult.place(x=120, y=90)
 
             # Rechner Neustarten
-            def renew_calc():
-                rechner.destroy()
-                user_select()
-            new_calc = Button(rechner, text="Neu", command=renew_calc)
+            new_calc = Button(rechner, text="Neu", command=lambda:user_select())
             new_calc.configure(bg="white")
             new_calc.place(x=250, y=118)
 
 # Widerstandsschaltung Berechnung
-def resistor_calc(rechner):
+def resistor_calc(darkmode):
     # Parallel Schaltung
     def parallel():
         # Alle widgets / labels löschen
@@ -195,9 +177,8 @@ def resistor_calc(rechner):
             widgets.destroy()
 
         # Schaltungsbild einfügen
-        parallel_image = Image.open("images/Resistor_par.png")
-        img_open = ImageTk.PhotoImage(parallel_image)
-        img_label = Label(image=img_open)
+        parallel_image = PhotoImage(file = r"images/Resistor_par.png")
+        img_label = Label(image=parallel_image)
         img_label.place(x=130, y=140)
         img_label.configure(background='white')
         
@@ -248,7 +229,7 @@ def resistor_calc(rechner):
   
         # Zurück Option
         back_b = Button(rechner, text="Zurück", command=lambda:resistor_calc(rechner))
-        back_b.configure(bg="white")
+        back_b.configure(bg='white')
         back_b.place(x=300, y=320)
 
         rechner.mainloop()
@@ -260,9 +241,8 @@ def resistor_calc(rechner):
             widgets.destroy()
 
         # Schaltungsbild einfügen
-        seriell_image = Image.open("images/Resistor_ser.png")
-        img_open = ImageTk.PhotoImage(seriell_image)
-        img_label = Label(image=img_open)
+        seriell_image = PhotoImage(file = r"images/Resistor_ser.png")
+        img_label = Label(image=seriell_image)
         img_label.place(x=130, y=140)
         img_label.configure(background='white')
 
@@ -322,6 +302,10 @@ def resistor_calc(rechner):
     for widgets in rechner.winfo_children():
         widgets.destroy()
 
+    if darkmode == "black":
+        cSelect1['bg'] = "black"
+        cSelect1['foreground'] = "white"
+        print("hi")
     # Schaltungsart auswählen Frame
     cSelect1 = Label(rechner, text="Ihre Schaltungsart?")
     cSelect1.configure(bg="white")
@@ -336,15 +320,12 @@ def resistor_calc(rechner):
     seriell_b.place(x=180, y=50)
 
     # Zurück Option
-    def back():
-        rechner.destroy()
-        user_select()
-    back_b = Button(rechner, text="Zurück", command=back)
+    back_b = Button(rechner, text="Zurück", command=lambda:user_select())
     back_b.configure(bg="white")
     back_b.place(x=300, y=320)
 
 # Grenzfrequenz Berechnung Kondensator
-def capacitor_calc(rechner):
+def capacitor_calc(darkmode):
     # LC Glied
     def LCglied():
         # Alle widgets / labels löschen
@@ -352,9 +333,8 @@ def capacitor_calc(rechner):
             widgets.destroy()
 
         # Schaltungsbild einfügen
-        lcPass_image = Image.open("images/LC-pass.png")
-        img_open = ImageTk.PhotoImage(lcPass_image)
-        img_label = Label(image=img_open)
+        lcPass_image = PhotoImage(file = r"images/LC-pass.png")
+        img_label = Label(image=lcPass_image)
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
@@ -418,13 +398,12 @@ def capacitor_calc(rechner):
             widgets.destroy()
 
         # Schaltungsbild einfügen
-        rcPass_image = Image.open("images/RC-Tiefpass.png")
-        img_open = ImageTk.PhotoImage(rcPass_image)
-        img_label = Label(image=img_open)
+        rcPass_image = PhotoImage(file = r"images/RC-Tiefpass.png")
+        img_label = Label(image=rcPass_image)
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
-        # Berechnugs GUI
+        # Berechnungs GUI
         cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied")
         cSelect1.configure(bg="white")
         cSelect1.place(x=120, y=20)
@@ -495,15 +474,12 @@ def capacitor_calc(rechner):
     RC_b.place(x=180, y=50)
 
     # Zurück Option
-    def back():
-        rechner.destroy()
-        user_select()
-    back_b = Button(rechner, text="Zurück", command=back)
+    back_b = Button(rechner, text="Zurück", command=lambda:user_select())
     back_b.configure(bg="white")
     back_b.place(x=300, y=320)
 
 # Grenzfrequenz Berechnung Spule
-def spool_calc(rechner):
+def spool_calc(darkmode):
     # LC Glied
     def LCglied():
         # Alle widgets / labels löschen
@@ -511,9 +487,8 @@ def spool_calc(rechner):
             widgets.destroy()
 
         # Schaltungsbild einfügen
-        lcPass_image = Image.open("images/LC-pass.png")
-        img_open = ImageTk.PhotoImage(lcPass_image)
-        img_label = Label(image=img_open)
+        lcPass_image = PhotoImage(file = r"images/LC-pass.png")
+        img_label = Label(image=lcPass_image)
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
@@ -577,15 +552,8 @@ def spool_calc(rechner):
             widgets.destroy()
 
         # Schaltungsbild einfügen
-        rlPass_image = Image.open("images/rl-Tiefpass.png")
-        img_open = ImageTk.PhotoImage(rlPass_image)
-        img_label = Label(image=img_open)
-        img_label.place(x=40, y=155)
-        img_label.configure(background='white')
-
-        rlPass_image = Image.open("images/rl-Tiefpass.png")
-        img_open = ImageTk.PhotoImage(rlPass_image)
-        img_label = Label(image=img_open)
+        rlPass_image = PhotoImage(file = r"images/rl-Tiefpass.png")
+        img_label = Label(image=rlPass_image)
         img_label.place(x=40, y=155)
         img_label.configure(background='white')
 
@@ -658,49 +626,89 @@ def spool_calc(rechner):
     RL_b = Button(rechner, text="RL Glied", command=RLglied)
     RL_b.configure(background="white")
     RL_b.place(x=180, y=50)
-
+    
     # Zurück Option
-    def back():
-        rechner.destroy()
-        user_select()
-    back_b = Button(rechner, text="Zurück", command=back)
+    back_b = Button(rechner, text="Zurück", command=lambda:user_select())
     back_b.configure(bg="white")
     back_b.place(x=300, y=320)
 
+# Tkinter Fenster erstellen
+rechner = Tk()
+rechner.title("Schaltungs Berechner")
+rechner.geometry("350x350")
+rechner.configure(background="white")
+
 # Auswahl fenster
 def user_select():
-    # Tkinter Fenster erstellen
-    rechner = Tk()
-    rechner.title("Schaltungs Berechner")
-    rechner.geometry("350x350")
-    rechner.configure(background='white')
+    # Alle widgets / labels löschen
+    for widgets in rechner.winfo_children():
+        widgets.destroy()
+    
+    # Tkinter Hintergrund weiß setzen
+    darkmode = "white"
+    rechner['bg'] = "white"
 
     # Webbroser öffnen mit HTL Seite
     def HTL_link():
         webbrowser.open_new(r"https://htlinn.ac.at/")
 
     # Logo einfügen
-    htl_image = Image.open("images/HTL.jpg")
-    img_open = ImageTk.PhotoImage(htl_image)
-    img_label = Button(image=img_open, command=HTL_link)
+    htl_img = PhotoImage(file = r"images/HTL.png")
+    img_label = Button(image=htl_img, command=HTL_link)
     img_label.place(x=80, y=120)
-    img_label.configure(background='white', pady=0, padx=0, bd=0)
-    
+    img_label.configure(background="white", pady=0, padx=0, bd=0, activebackground="white")
+
+    # Dark Mode
+    dark_moon  = PhotoImage(file = r"images/darkmode.png")
+    def dark_switch(lightmode_b):
+        # Delete Lightmode Button
+        lightmode_b.destroy()
+        
+        # Set widget colors black
+        resistor_b['bg']  = "#3C4145"
+        capacitor_b['bg'] = "#3C4145"
+        spool_b['bg']     = "#3C4145"
+        img_label['bg']   = "#3C4145"
+        rechner['bg']     = "#3C4145"
+        cSelect['bg']     = "#3C4145"
+
+        # Set Button active background
+        img_label['activebackground'] = "#3C4145"
+
+        # Set text colors white
+        cSelect['foreground']     = "white"
+        resistor_b['foreground']  = "white"
+        capacitor_b['foreground'] = "white"
+        spool_b['foreground']     = "white"
+        
+        # Create Darkmode Button
+        darkmode_b = Button(rechner, text="Dark Mode", image=dark_moon, command=lambda:user_select())
+        darkmode_b.configure(bg="#3C4145", bd=0, activebackground="#3C4145")
+        darkmode_b.place(x=0,y=310)
+        darkmode = "black"
+        return darkmode
+
+    # Light Mode Button
+    light_moon  = PhotoImage(file = r"images/lightmode.png")
+    lightmode_b = Button(rechner, text="Light Mode", image=light_moon, command=lambda:dark_switch(lightmode_b))
+    lightmode_b.configure(bg="white", bd=0)
+    lightmode_b.place(x=0,y=310)
+
     # Auswahl menü
-    cSelect = Label(rechner, text="Was wollen sie berechnen?")
-    cSelect.configure(bg="white",font=("Calibri", 15, "bold"))
+    cSelect = Label(rechner, text="Was wollen sie berechnen?", foreground="black")
+    cSelect.configure(bg="white", font=("Calibri", 15, "bold"))
     cSelect.place(x=55, y=20)
 
-    resistor_b = Button(rechner, text="Widerstand", command=lambda:resistor_calc(rechner))
-    resistor_b.configure(bg="white", bd=1)
+    resistor_b = Button(rechner, text="Widerstand", foreground="black", command=lambda:resistor_calc(darkmode))
+    resistor_b.configure(bg='white', bd=1)
     resistor_b.place(x=50, y=55)
 
-    capacitor_b = Button(rechner, text="Kondensator", command=lambda:capacitor_calc(rechner))
+    capacitor_b = Button(rechner, text="Kondensator", foreground="black", command=lambda:capacitor_calc(darkmode))
     capacitor_b.configure(background="white", bd=1)
     capacitor_b.place(x=150, y=55)
 
-    spool_b = Button(rechner, text="Spule", command=lambda:spool_calc(rechner))
-    spool_b.configure(background='white',bd=1)
+    spool_b = Button(rechner, text="Spule", foreground="black", command=lambda:spool_calc(darkmode))
+    spool_b.configure(background="white",bd=1)
     spool_b.place(x=250, y=55)
 
     rechner.mainloop()
