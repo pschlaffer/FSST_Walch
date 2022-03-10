@@ -6,11 +6,9 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import math as m
-import random
 import webbrowser
-import smtplib
-import packs.spool
 import packs.mail
+import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -93,6 +91,7 @@ class resistor(components):
                 new_calc.configure(bg="white")
                 new_calc.place(x=250, y=118)
         
+        # Darkmode
         if rechner['bg'] == "#3C4145":
             iResult['bg']  = "#3C4145"
             new_calc['bg'] = "#3C4145"
@@ -164,6 +163,7 @@ class capacitor(components):
                 new_calc.configure(bg="white")
                 new_calc.place(x=250, y=118)
         
+        # Darkmode
         if rechner['bg'] == "#3C4145":
             iResult['bg']  = "#3C4145"
             new_calc['bg'] = "#3C4145"
@@ -239,6 +239,7 @@ class spool(components):
             new_calc.configure(bg="white")
             new_calc.place(x=250, y=118)
         
+        # Darkmode 
         if rechner['bg'] == "#3C4145":
             iResult['bg']  = "#3C4145"
             new_calc['bg'] = "#3C4145"
@@ -289,6 +290,7 @@ def user_select(darkmode):
         img_label['bg']   = "#3C4145"
         rechner['bg']     = "#3C4145"
         cSelect['bg']     = "#3C4145"
+        mail_b['bg']      = "#3C4145"
 
         # Set Button active background
         img_label['activebackground'] = "#3C4145"
@@ -298,6 +300,7 @@ def user_select(darkmode):
         resistor_b['foreground']  = "white"
         capacitor_b['foreground'] = "white"
         spool_b['foreground']     = "white"
+        mail_b['foreground']      = "white"
 
         # Create Darkmode Button
         darkmode_b = Button(rechner, text="Dark Mode", image=dark_moon, command=lambda:user_select("white"))
@@ -327,6 +330,10 @@ def user_select(darkmode):
     spool_b = Button(rechner, text="Spule", foreground="black", command=lambda:exec(open("packs/spool.py").read()))
     spool_b.configure(background="white", bd=1)
     spool_b.place(x=250, y=55)
+
+    mail_b = Button(rechner, text="Kontakt", foreground="black", command=lambda:exec(open("packs/mail.py").read()))
+    mail_b.configure(bg="white", bd=0)
+    mail_b.place(x=150,y=320)
 
     if darkmode == "black":
         dark_switch(lightmode_b)
