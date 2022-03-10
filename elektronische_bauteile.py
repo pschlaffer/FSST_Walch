@@ -234,6 +234,10 @@ class spool(components):
                 new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"))
                 new_calc.configure(bg="white")
                 new_calc.place(x=250, y=118)
+
+            new_calc = Button(rechner, text="Neu", command=lambda:user_select())
+            new_calc.configure(bg="white")
+            new_calc.place(x=250, y=118)
         
         if rechner['bg'] == "#3C4145":
             iResult['bg']  = "#3C4145"
