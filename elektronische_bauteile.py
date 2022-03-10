@@ -335,6 +335,10 @@ def user_select(darkmode):
     mail_b.configure(bg="white", bd=0)
     mail_b.place(x=150,y=320)
 
+    formula_b = Button(rechner, text="Formulas", command=lambda:exec(open("packs/formulas.py").read()))
+    formula_b.configure(background='white', bd=0)
+    formula_b.place(x=292, y=320)
+
     if darkmode == "black":
         dark_switch(lightmode_b)
     else:
