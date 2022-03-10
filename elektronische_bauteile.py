@@ -286,6 +286,7 @@ def user_select(darkmode):
         # Set widget colors black
         resistor_b['bg']  = "#3C4145"
         capacitor_b['bg'] = "#3C4145"
+        formula_b['bg']   = "#3C4145"
         spool_b['bg']     = "#3C4145"
         img_label['bg']   = "#3C4145"
         rechner['bg']     = "#3C4145"
@@ -297,6 +298,7 @@ def user_select(darkmode):
 
         # Set text colors white
         cSelect['foreground']     = "white"
+        formula_b['foreground']   = "white"
         resistor_b['foreground']  = "white"
         capacitor_b['foreground'] = "white"
         spool_b['foreground']     = "white"
