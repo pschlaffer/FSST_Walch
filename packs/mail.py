@@ -2,42 +2,54 @@
 # 09.03.2022
 # FSST - Walch
 
-# Imports
 import elektronische_bauteile
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
+# Mail sende Fenster
 def mail():
     # Alle widgets / labels löschen
     for widgets in rechner.winfo_children():
         widgets.destroy()
 
-    # Kontakt gui    
-    text1=Label(rechner, text="Betreff:", bg ="white")
-    text1.place(x=51, y=50)
+    # Kontakt Gui   
+    Label(rechner,width="300", text="Please enter details below", bg="orange",fg="white",font=("Calibri", 15, "bold")).pack() 
 
-    Label(rechner,width="300", text="Please enter details below", bg="orange",fg="white").pack()
+    text1=Label(rechner, text="Betreff:", bg ="white",font=("Calibri", 12, "bold"))
+    text1.place(x=15, y=50)
 
-    betreff = Entry(rechner)
-    betreff.place(x=120, y=50, width=150, height=20)
+    betreff = Entry(rechner, bg="#8a8a8a")
+    betreff.insert(0, "*")
+    betreff.place(x=110, y=55, width=200, height=25)
 
-    text2 = Label(rechner, text="Nachricht:")
-    text2.configure(bg="white")
-    text2.place(x=51, y=70)
-    nachricht = Entry(rechner)
-    nachricht.place(x=120, y=80, width=150, height=100)
+    text2 = Label(rechner, text="Nachricht:", bg="white", font=("Calibri", 12, "bold"))
+    text2.place(x=15, y=85)
+
+    nachricht = Entry(rechner, bg="#8a8a8a")
+    nachricht.insert(0,"*")
+    nachricht.place(x=110, y=90, width=200, height=100)
 
     # Mail schreiben
     def get():
         # Betreff u. Nachricht aus Feld holen
         betreff_valueget = betreff.get()
         nachricht_valueget = nachricht.get()
+        success = Label(rechner, text="")
+        error = Label(rechner, text="")
         
-        if betreff_valueget =='' or nachricht_valueget=='':
+        # Error nachricht anzeigen
+        def error_message():
             error = Label(rechner, text="Please enter Value!")
-            error.place(x=150,y=150)
-            success = Label(rechner, text="")
+            error.place(x=105, y=200)
+
+        # Error falls nichts eingegebn wird
+        if betreff_valueget =='*' or nachricht_valueget=='*':
+            error_message()
+        elif betreff_valueget =='' or nachricht_valueget=='':
+            error_message()
+        elif betreff_valueget =='*' or nachricht_valueget=='':
+            error_message()
+        elif betreff_valueget =='' or nachricht_valueget=='*':
+            error_message()
+
         else:
             # Nachricht erstellen
             msg = MIMEMultipart()
@@ -53,9 +65,11 @@ def mail():
             smtpObj.starttls()
             smtpObj.login(username, password)
             smtpObj.sendmail(sender, reciever1, msg.as_string())
-            success = Label(rechner, text="Succesfull sended!")
-            success.place(x=150,y=150)
+    
+            success = Label(rechner, text="Succesfull sended!", fg="green")
+            success.place(x=105, y=200)
         
+        # Darkmode
         if rechner['bg'] == "#3C4145":
             success['bg']   = "#3C4145"
             error['bg']     = "#3C4145"
@@ -66,20 +80,17 @@ def mail():
     # Button bzw. Entertaste zur Berechnung
     def enter(event):
         get()
-    calc_b = Button(rechner, text="Senden", command=get)
-    calc_b.configure(background="white")
-    calc_b.place(x=280, y= 80)
+    calc_b = Button(rechner, text="Senden", bg="white",command=get)
+    calc_b.place(x=260, y= 200)
     rechner.bind('<Return>', enter)
     
     # Zurück Option
     if rechner['bg'] == "#3C4145":
-        back_b = Button(rechner, text="Back", command=lambda:user_select("black"))
-        back_b.configure(bg="white")
+        back_b = Button(rechner, text="Back", command=lambda:user_select("black"), bg="white")
         back_b.place(x=300, y=320)
 
     if rechner['bg'] == "white":
-        back_b = Button(rechner, text="Back", command=lambda:user_select("white"))
-        back_b.configure(bg="white")
+        back_b = Button(rechner, text="Back", command=lambda:user_select("white"), bg="white")
         back_b.place(x=300, y=320)
     
     # Darkmode 
