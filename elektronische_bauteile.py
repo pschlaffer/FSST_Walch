@@ -51,19 +51,16 @@ class resistor(components):
                 R12_new = R12_round * m.pow(10, -3), "kΩ"
             
             # Anzeige
-            iResult = Label(rechner, text=R12_new)
-            iResult.configure(bg="white")
+            iResult = Label(rechner, text=R12_new, bg="white")
             iResult.place(x=120, y=90)
             
             # Rechner Neustarten
             if rechner['bg'] == "#3C4145":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"), bg="white")
                 new_calc.place(x=250, y=118)
             
             if rechner['bg'] == "white":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"), bg="white")
                 new_calc.place(x=250, y=118)
         
         # Reihen Schaltung
@@ -76,19 +73,16 @@ class resistor(components):
                 R12_new = R12 * m.pow(10, -3), "kΩ"
             
             # Anzeige
-            iResult = Label(rechner, text=R12_new)
-            iResult.configure(bg="white")
+            iResult = Label(rechner, text=R12_new, bg="white")
             iResult.place(x=120, y=90)
 
             # Rechner Neustarten
             if rechner['bg'] == "#3C4145":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"), bg="white")
                 new_calc.place(x=250, y=118)
             
             if rechner['bg'] == "white":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"), bg="white")
                 new_calc.place(x=250, y=118)
         
         # Darkmode
@@ -120,19 +114,16 @@ class capacitor(components):
                 fg_round_new = fg_round * m.pow(10, -3), "kHz"
             
             # Anzeige
-            iResult = Label(rechner, text=fg_round_new)
-            iResult.configure(bg="white")
+            iResult = Label(rechner, text=fg_round_new, bg="white")
             iResult.place(x=120, y=90)
    
             # Rechner Neustarten
             if rechner['bg'] == "#3C4145":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"), bg="white")
                 new_calc.place(x=250, y=118)
             
             if rechner['bg'] == "white":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"), bg="white")
                 new_calc.place(x=250, y=118)
     
         # LC Glied
@@ -148,19 +139,16 @@ class capacitor(components):
                 fg_round_new = fg_round * m.pow(10, -3), "kHz"
             
             # Anzeige
-            iResult = Label(rechner, text=fg_round_new)
-            iResult.configure(bg="white")
+            iResult = Label(rechner, text=fg_round_new, bg="white")
             iResult.place(x=120, y=90)
 
             # Rechner Neustarten
             if rechner['bg'] == "#3C4145":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"), bg="white")
                 new_calc.place(x=250, y=118)
             
             if rechner['bg'] == "white":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"), bg="white")
                 new_calc.place(x=250, y=118)
         
         # Darkmode
@@ -193,19 +181,16 @@ class spool(components):
                 fg_round_new = fg_round * m.pow(10, -3), "kHz"
             
             # Anzeige
-            iResult = Label(rechner, text=fg_round_new)
-            iResult.configure(bg="white")
+            iResult = Label(rechner, text=fg_round_new, bg="white")
             iResult.place(x=120, y=90)
             
             # Rechner Neustarten
             if rechner['bg'] == "#3C4145":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"), bg="white")
                 new_calc.place(x=250, y=118)
             
             if rechner['bg'] == "white":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"), bg="white")
                 new_calc.place(x=250, y=118)
 
         # RL Glied
@@ -220,23 +205,19 @@ class spool(components):
                 fg_round_new = fg_round * m.pow(10, -3), "kHz"
             
             # Anzeige
-            iResult = Label(rechner, text=fg_round_new)
-            iResult.configure(bg="white")
+            iResult = Label(rechner, text=fg_round_new, bg ="white")
             iResult.place(x=120, y=90)
 
             # Rechner Neustarten
             if rechner['bg'] == "#3C4145":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("black"), bg="white")
                 new_calc.place(x=250, y=118)
             
             if rechner['bg'] == "white":
-                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"))
-                new_calc.configure(bg="white")
+                new_calc = Button(rechner, text="Neu", command=lambda:user_select("white"), bg="white")
                 new_calc.place(x=250, y=118)
 
-            new_calc = Button(rechner, text="Neu", command=lambda:user_select())
-            new_calc.configure(bg="white")
+            new_calc = Button(rechner, text="Neu", command=lambda:user_select(darkmode), bg="white")
             new_calc.place(x=250, y=118)
         
         # Darkmode 
@@ -270,9 +251,8 @@ def user_select(darkmode):
 
     # Logo einfügen
     htl_img = PhotoImage(file = r"images/HTL.png")
-    img_label = Button(image=htl_img, command=HTL_link)
+    img_label = Button(image=htl_img, command=HTL_link,background="white", pady=0, padx=0, bd=0, activebackground="white")
     img_label.place(x=80, y=120)
-    img_label.configure(background="white", pady=0, padx=0, bd=0, activebackground="white")
     
     lightmode_b = 0
     
@@ -325,11 +305,11 @@ def user_select(darkmode):
     resistor_b.configure(bg='white', bd=1)
     resistor_b.place(x=50, y=55)
 
-    capacitor_b = Button(rechner, text="Kondensator", foreground="black", command=lambda:exec(open("packs/L_calc.py").read()))
+    capacitor_b = Button(rechner, text="Kondensator", foreground="black", command=lambda:exec(open("packs/C_calc.py").read()))
     capacitor_b.configure(background="white", bd=1)
     capacitor_b.place(x=150, y=55)
 
-    spool_b = Button(rechner, text="Spule", foreground="black", command=lambda:exec(open("packs/spool.py").read()))
+    spool_b = Button(rechner, text="Spule", foreground="black", command=lambda:exec(open("packs/L_calc.py").read()))
     spool_b.configure(background="white", bd=1)
     spool_b.place(x=250, y=55)
 
