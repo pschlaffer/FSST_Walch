@@ -2,16 +2,16 @@
 # ------- 09.03.2022
 # ------- FSST - Walch
 
-# ------------------------------------------- Libarys
+# ----------------------------------------------- Libarys
 import elektronische_bauteile
 
-# ------------------------------------------- Mail sende Fenster
+# ---------------------------------------------------------- Mail sende Fenster
 def mail():
-    # ------------------------------------------- Alle widgets / labels löschen
+    # ----------------------------------------------- Alle widgets / labels löschen
     for widgets in rechner.winfo_children():
         widgets.destroy()
 
-    # ------------------------------------------- Kontakt Gui   
+    # ----------------------------------------------- Kontakt Gui   
     bar = Label(rechner,width="300", text="Please enter details below", bg="orange",fg="white",font=("Calibri", 15, "bold"))
     bar.pack() 
 
@@ -29,24 +29,24 @@ def mail():
     nachricht.insert(0,"*")
     nachricht.place(x=110, y=90, width=200, height=100)
 
-    # ------------------------------------------- Mail schreiben
+    # ----------------------------------------------- Mail schreiben
     def get():
-        # ------------------------------------------- Betreff u. Nachricht aus Feld holen
+        # ----------------------------------------------- Betreff u. Nachricht aus Feld holen
         betreff_valueget = betreff.get()
         nachricht_valueget = nachricht.get()
         success = Label(rechner, text="")
         
-        # ------------------------------------------- Error nachricht anzeigen
+        # ----------------------------------------------- Error nachricht anzeigen
         def error_message():
             error = Label(rechner, text="Please enter Value!")
             error.place(x=105, y=200)
             
-            # Darkmode
+            # ----------------------------------------------- Darkmode
             if rechner['bg'] == "#3C4145":
                 error['bg']     = "#3C4145"
                 error['fg']     = "white"
 
-        # ------------------------------------------- Error falls nichts eingegebn wird
+        # ----------------------------------------------- Error falls nichts eingegebn wird
         if betreff_valueget =='*' or nachricht_valueget=='*':
             error_message()
         elif betreff_valueget =='' or nachricht_valueget=='':
@@ -55,45 +55,44 @@ def mail():
             error_message()
         elif betreff_valueget =='' or nachricht_valueget=='*':
             error_message()
-
         else:
-            # ------------------------------------------- Nachricht erstellen
+            # ----------------------------------------------- Nachricht erstellen
             msg = MIMEMultipart()
             msg['Subject'] = betreff_valueget
             msg['From'] = sender
-            msg['To'] = reciever1
+            msg['To'] = reciever
             part = MIMEText(nachricht_valueget, 'plain')
             msg.attach(part)
 
-            # ------------------------------------------- Nachricht senden
+            # ----------------------------------------------- Nachricht senden
             smtpObj = smtplib.SMTP(smtpServer, smtpPort)
             smtpObj.set_debuglevel(1)
             smtpObj.starttls()
             smtpObj.login(username, password)
-            smtpObj.sendmail(sender, reciever1, msg.as_string())
+            smtpObj.sendmail(sender, reciever, msg.as_string())
 
-            # ------------------------------------------- Falls erfolgreich gesendet nachricht einblenden
+            # ----------------------------------------------- Falls erfolgreich gesendet nachricht einblenden
             success = Label(rechner, text="Succesfull sended!", fg="green")
             success.place(x=105, y=200)
             
-            # Darkmode
+            # ----------------------------------------------- Darkmode
             if rechner['bg'] == "#3C4145":
                 success['bg']   = "#3C4145"
                 success['fg']   = "white"
         
-    # ------------------------------------------- Button bzw. Entertaste zur Berechnung
+    # ----------------------------------------------- Button bzw. Entertaste zur Ausführung
     def enter(event):
         get()
     calc_b = Button(rechner, text="Senden", bg="white",command=get)
     calc_b.place(x=260, y= 200)
     rechner.bind('<Return>', enter)
     
-    # ------------------------------------------- Zurück Option
+    # ----------------------------------------------- Zurück Option
     switch = "white"
     back_b = Button(rechner, text="Back", command=lambda:user_select(switch), bg="white")
     back_b.place(x=300, y=320)
 
-    # ------------------------------------------- Darkmode 
+    # ----------------------------------------------- Darkmode 
     if rechner['bg'] == "#3C4145":
         for widgets in rechner.winfo_children():
             widgets.configure(bg="#3C4145", fg="white")

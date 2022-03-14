@@ -4,6 +4,7 @@
 
 # ------------------------------------------- Libarys
 import elektronische_bauteile
+import packs.calc
 
 # ------------------------------------------- Widerstandsschaltung Berechnung
 def widerstand():
@@ -63,6 +64,10 @@ def widerstand():
         # ------------------------------------------- Zurück Option
         back_b = Button(rechner, text="Back", bg="white",command=lambda:exec(open("packs/R_calc.py").read()))
         back_b.place(x=300, y=320)
+
+        # ------------------------------------------------------ Rechner Neustarten
+        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
         if rechner['bg'] == "#3C4145":
@@ -128,6 +133,10 @@ def widerstand():
         # ------------------------------------------- Zurück option
         back_b = Button(rechner, text="Back", bg="white", command=lambda:exec(open("packs/R_calc.py").read()))
         back_b.place(x=300, y=320)
+        
+        # ------------------------------------------------------ Rechner Neustarten
+        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
         if rechner['bg'] == "#3C4145":

@@ -2,6 +2,9 @@
 # --------- 09.03.2022
 # --------- FSST - Walch
 
+# ------------------------------------------- Libarys
+import packs.calc
+
 # ------------------------------------------- Grenzfrequenz Berechnung Kondensator
 def capacitor_calc():
     # ------------------------------------------- LC Glied
@@ -61,6 +64,10 @@ def capacitor_calc():
         # ------------------------------------------- Zurück Option
         back_b = Button(rechner, text="Back", bg="white",command=lambda:exec(open("packs/C_calc.py").read()))
         back_b.place(x=300, y=320)
+
+        # ------------------------------------------------------ Rechner Neustarten
+        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
         if rechner['bg'] == "#3C4145":
@@ -127,6 +134,10 @@ def capacitor_calc():
         back_b = Button(rechner, text="Back", bg="white", command=lambda:exec(open("packs/C_calc.py").read()))
         back_b.place(x=300, y=320)
 
+        # ------------------------------------------------------ Rechner Neustarten
+        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc.place(x=250, y=118)
+
         # ------------------------------------------- Darkmode 
         if rechner['bg'] == "#3C4145":
             for widgets in rechner.winfo_children():
@@ -150,7 +161,7 @@ def capacitor_calc():
 
     # ------------------------------------------- Zurück Option
     switch = "white"
-    back_b = Button(rechner, text="Back", bg="white",command=lambda:user_select("black"))
+    back_b = Button(rechner, text="Back", bg="white",command=lambda:user_select(switch))
     back_b.place(x=300, y=320)
 
     # ------------------------------------------- Darkmode 

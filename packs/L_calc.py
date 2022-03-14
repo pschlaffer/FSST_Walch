@@ -62,6 +62,10 @@ def spool_calc():
         back_b = Button(rechner, text="Back", bg="white",command=lambda:exec(open("packs/L_calc.py").read()))
         back_b.place(x=300, y=320)
 
+        # ------------------------------------------------------ Rechner Neustarten
+        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc.place(x=250, y=118)
+
         # ------------------------------------------- Darkmode 
         if rechner['bg'] == "#3C4145":
             for widgets in rechner.winfo_children():
@@ -126,6 +130,10 @@ def spool_calc():
         # ------------------------------------------- Zurück Option
         back_b = Button(rechner, text="Back", bg="white",command=lambda:exec(open("packs/L_calc.py").read()))
         back_b.place(x=300, y=320)
+
+        # ------------------------------------------------------ Rechner Neustarten
+        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc.place(x=250, y=118)
         
         # ------------------------------------------- Darkmode 
         if rechner['bg'] == "#3C4145":
