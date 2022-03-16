@@ -21,9 +21,8 @@ smtpServer = "smtp.web.de"
 smtpPort   = 587
 username   = "htl_mangott-schlaffer"
 password   = "nibnab01"
-
-sender    = "htl_mangott-schlaffer@web.de"
-reciever = "pschlaffer@tsn.at"
+sender     = "htl_mangott-schlaffer@web.de"
+reciever   = "pschlaffer@tsn.at"
 
 # ------------------------------------------------------ Tkinter Fenster erstellen
 rechner = Tk()
@@ -38,48 +37,32 @@ def user_select(darkmode):
     for widgets in rechner.winfo_children():
         widgets.destroy()
 
-    # ------------------------------------------------------ Webbroser öffnen mit HTL Seite
-    def HTL_link():
-        webbrowser.open_new(r"https://htlinn.ac.at/")
-
-    # ------------------------------------------------------ Set TK Fenster white
-    rechner ['bg'] = "white"
-
     # ------------------------------------------------------ Logo einfügen
     htl_img = PhotoImage(file = r"images/HTL.png")
-    img_label = Button(image=htl_img, command=HTL_link,background="white", pady=0, padx=0, bd=0, activebackground="white")
-    img_label.place(x=80, y=120)
+    img_label = Button(image=htl_img, command=lambda:webbrowser.open_new(r"https://htlinn.ac.at/"))
+    img_label.configure(background="white", pady=0, padx=0, bd=0, activebackground="white")
+    img_label.place(x=80, y=100)
     
-    lightmode_b = 0
-    
-    # ------------------------------------------------------ Dark Mode
-    dark_moon  = PhotoImage(file = r"images/darkmode.png")
-    def dark_switch(lightmode_b):
-        # ------------------------------------------------------ Delete Lightmode Button
-        if lightmode_b != 0:
-            lightmode_b.destroy()
-        
+    # ------------------------------------------------------ Darkmode
+    dark_moon = PhotoImage(file = r"images/darkmode.png")
+    def dark_switch():
         # ------------------------------------------------------ Set widget colors black
+        rechner['bg'] = "#3C4145"
         for widgets in rechner.winfo_children():
             widgets.configure(bg="#3C4145", fg="white")
-
-        # ------------------------------------------------------ Hintergrudn schwarz setzen
-        rechner['bg'] = "#3C4145"
-
-        # ------------------------------------------------------ Set Button active background
         img_label['activebackground'] = "#3C4145"
 
-        # ------------------------------------------------------ Create Darkmode Button
         darkmode_b = Button(rechner, text="Dark Mode", bg="#3C4145", bd=0, activebackground="#3C4145", image=dark_moon, command=lambda:user_select("white"))
         darkmode_b.place(x=0,y=310)
 
-    light_moon  = PhotoImage(file = r"images/lightmode.png")
     # ------------------------------------------------------ Light Mode Button
+    light_moon  = PhotoImage(file = r"images/lightmode.png")
     def light_switch():
-        lightmode_b = Button(rechner, text="Light Mode", image=light_moon,bg="white", bd=0, command=lambda:dark_switch(lightmode_b))
+        rechner['bg'] = "white"
+        lightmode_b = Button(rechner, text="Light Mode", image=light_moon,bg="white", bd=0, command=lambda:dark_switch())
         lightmode_b.place(x=0,y=310)
 
-    # ------------------------------------------------------ Auswahl menü
+    # ------------------------------------------------------ Start GUI 
     cSelect = Label(rechner, text="Was wollen sie berechnen?", foreground="black", bg="white", font=("Calibri", 15, "bold"))
     cSelect.place(x=55, y=20)
 
@@ -100,7 +83,7 @@ def user_select(darkmode):
 
     # ------------------------------------------------------  Light/Darkmode Button Switch
     if darkmode == "black":
-        dark_switch(lightmode_b)
+        dark_switch()
     else:
         light_switch()
 
