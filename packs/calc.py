@@ -34,7 +34,7 @@ class resistor(components):
                 R12_new = R12_round * m.pow(10, -3), "kΩ"
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=R12_new, bg="white")
-            iResult.place(x=120, y=90)
+            iResult.place(x=120, y=100)
         
         # ------------------------------------------------------ Reihen Schaltung
         else:
@@ -46,7 +46,7 @@ class resistor(components):
                 R12_new = R12 * m.pow(10, -3), "kΩ"
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=R12_new, bg="white")
-            iResult.place(x=120, y=90)
+            iResult.place(x=120, y=100)
         # ------------------------------------------------------ Darkmode
         if rechner['bg'] == "#3C4145":
             switch = "black"
@@ -77,7 +77,7 @@ class capacitor(components):
             
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=fg_round_new, bg="white")
-            iResult.place(x=120, y=90)
+            iResult.place(x=120, y=100)
    
         # ------------------------------------------------------ LC Glied
         else:
@@ -93,7 +93,7 @@ class capacitor(components):
             
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=fg_round_new, bg="white")
-            iResult.place(x=120, y=90)
+            iResult.place(x=120, y=100)
             
         # ------------------------------------------------------ Darkmode
         if rechner['bg'] == "#3C4145":
@@ -129,7 +129,7 @@ class spool(components):
             
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=fg_round_new, bg="white")
-            iResult.place(x=120, y=90)
+            iResult.place(x=120, y=100)
             
         # ------------------------------------------------------ RL Glied
         else:
@@ -144,7 +144,7 @@ class spool(components):
             
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=fg_round_new, bg ="white")
-            iResult.place(x=120, y=90)
+            iResult.place(x=120, y=100)
 
         # ------------------------------------------------------ Darkmode
         if rechner['bg'] == "#3C4145":

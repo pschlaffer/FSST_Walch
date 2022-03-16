@@ -16,18 +16,18 @@ def spool_calc():
         img_label.place(x=40, y=155)
 
         # ------------------------------------------- Berechnungs GUI
-        cSelect1 = Label(rechner, text="Grenzfrequenz LC Glied", bg="white")
+        cSelect1 = Label(rechner, text="Cut-Off frequency LC-Pass", bg="white")
         cSelect1.place(x=120, y=20)
 
-        result = Label(rechner, text="Berechnet:", bg="white")
-        result.place(x=58, y=90)
+        result = Label(rechner, text="Calculated:", bg="white",font=("Calibri", 10, "bold"))
+        result.place(x=39, y=100)
         
-        text1 = Label(rechner, text="Spule (mH):", bg="white")
-        text1.place(x=51, y=50)
+        text1 = Label(rechner, text="Coil (mH):", bg="white")
+        text1.place(x=43, y=50)
         henry_value1 = Entry(rechner)
         henry_value1.place(x=120, y=50)
 
-        text2 = Label(rechner, text="Kondensator (nF):", bg="white")
+        text2 = Label(rechner, text="Capacitor (nF):", bg="white")
         text2.place(x=20, y=70)
         farad_value1 = Entry(rechner)
         farad_value1.place(x=120, y=70)
@@ -42,7 +42,7 @@ def spool_calc():
 
             # ------------------------------------------- Lösungsfeld wieder säubern
             iResult = Label(rechner,bg="white", text="                            ")
-            iResult.place(x=120, y=90)
+            iResult.place(x=120, y=100)
 
             if rechner['bg'] == "#3C4145":
                 iResult['bg'] = "#3C4145"
@@ -63,7 +63,7 @@ def spool_calc():
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
-        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
         new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
@@ -85,19 +85,19 @@ def spool_calc():
         img_label.place(x=40, y=155)
 
         # ------------------------------------------- Berechnugs GUI
-        cSelect1 = Label(rechner, text="Grenzfrequenz RL Glied", bg="white")
+        cSelect1 = Label(rechner, text="Cut-Off frequency RL-Pass", bg="white")
         cSelect1.place(x=120, y=20)
 
-        result = Label(rechner, text="Berechnet:", bg="white")
-        result.place(x=58, y=90)
+        result = Label(rechner, text="Calculated:", bg="white",font=("Calibri", 10, "bold"))
+        result.place(x=39, y=100)
         
-        text1 = Label(rechner, text="Widerstand (Ohm):", bg="white")
-        text1.place(x=13, y=50)
+        text1 = Label(rechner, text="Resistor (Ohm):", bg="white")
+        text1.place(x=15, y=50)
         ohm_value1 = Entry(rechner)
         ohm_value1.place(x=120, y=50)
 
-        text2 = Label(rechner, text="Spule (mH):", bg="white")
-        text2.place(x=51, y=70)
+        text2 = Label(rechner, text="Coil (mH):", bg="white")
+        text2.place(x=43, y=70)
         henry_value = Entry(rechner)
         henry_value.place(x=120, y=70)
         farad=0
@@ -111,7 +111,7 @@ def spool_calc():
 
             # ------------------------------------------- Lösungsfeld wieder säubern
             iResult = Label(rechner, bg="white",text="                                 ")
-            iResult.place(x=120, y=90)
+            iResult.place(x=120, y=100)
 
             if rechner['bg'] == "#3C4145":
                 iResult['bg'] = "#3C4145"
@@ -132,7 +132,7 @@ def spool_calc():
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
-        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
         new_calc.place(x=250, y=118)
         
         # ------------------------------------------- Darkmode 
@@ -147,13 +147,13 @@ def spool_calc():
         widgets.destroy()
     
     # ------------------------------------------- Schaltungsart auswählen Frame
-    cSelect = Label(rechner, text="Ihre Schaltungsart?", bg="white")
+    cSelect = Label(rechner, text="Circuit type?", bg="white")
     cSelect.place(x=120, y=20)
 
-    LC_b = Button(rechner, text="LC Glied", command=LCglied, bg="white")
+    LC_b = Button(rechner, text="LC-Pass", command=LCglied, bg="white")
     LC_b.place(x=100, y=50)
 
-    RL_b = Button(rechner, text="RL Glied", command=RLglied, bg="white")
+    RL_b = Button(rechner, text="RL-Pass", command=RLglied, bg="white")
     RL_b.place(x=180, y=50)
     
     # ------------------------------------------- Zurück Option
