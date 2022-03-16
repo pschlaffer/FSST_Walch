@@ -19,18 +19,17 @@ def capacitor_calc():
         img_label.place(x=40, y=155)
 
         # ------------------------------------------- Berechnungs GUI
-        cSelect1 = Label(rechner, text="Grenzfrequenz LC Glied", bg="white")
+        cSelect1 = Label(rechner, text="Cut-Off frequenzy LC-Pass", bg="white")
         cSelect1.place(x=120, y=20)
 
-        result = Label(rechner, text="Berechnet:", bg="white")
-        result.place(x=58, y=90)
+        result = Label(rechner, text="Calculated:", bg="white",font=("Calibri", 10, "bold"))
         
-        text1 = Label(rechner, text="Spule (mH):", bg="white")
-        text1.place(x=51, y=50)
+        text1 = Label(rechner, text="Coil (mH):", bg="white")
+        text1.place(x=43, y=50)
         henry_value1 = Entry(rechner)
         henry_value1.place(x=120, y=50)
 
-        text2 = Label(rechner, text="Kondensator (nF):", bg="white")
+        text2 = Label(rechner, text="Capacitor (nF):", bg="white")
         text2.place(x=20, y=70)
         farad_value1 = Entry(rechner)
         farad_value1.place(x=120, y=70)
@@ -66,7 +65,7 @@ def capacitor_calc():
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
-        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
         new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
@@ -88,18 +87,18 @@ def capacitor_calc():
         img_label.place(x=40, y=155)
 
         # ------------------------------------------- Berechnungs GUI
-        cSelect1 = Label(rechner, text="Grenzfrequenz RC Glied", bg="white")
+        cSelect1 = Label(rechner, text="Cut-Off frequenzy RC-Pass", bg="white")
         cSelect1.place(x=120, y=20)
 
-        result = Label(rechner, text="Berechnet:", bg="white")
-        result.place(x=58, y=90)
+        result = Label(rechner, text="Calculated:", bg="white",font=("Calibri", 10, "bold"))
+        result.place(x=39, y=100)
         
-        text1 = Label(rechner, text="Widerstand (Ohm):", bg="white")
-        text1.place(x=13, y=50)
+        text1 = Label(rechner, text="Resistor (Ohm):", bg="white")
+        text1.place(x=16, y=50)
         ohm_value1 = Entry(rechner)
         ohm_value1.place(x=120, y=50)
 
-        text2 = Label(rechner, text="Kondensator (nF):", bg="white")
+        text2 = Label(rechner, text="Capacitor (nF):", bg="white")
         text2.place(x=20, y=70)
         farad_value1 = Entry(rechner)
         farad_value1.place(x=120, y=70)
@@ -135,7 +134,7 @@ def capacitor_calc():
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
-        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
         new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
@@ -150,13 +149,13 @@ def capacitor_calc():
         widgets.destroy()
     
     # ------------------------------------------- Schaltungsart auswählen Frame
-    cSelect = Label(rechner, text="Ihre Schaltungsart?", bg="white")
+    cSelect = Label(rechner, text="Circuit type?", bg="white")
     cSelect.place(x=120, y=20)
 
-    LC_b = Button(rechner, text="LC Glied", bg="white", command=LCglied)
+    LC_b = Button(rechner, text="LC-Pass", bg="white", command=LCglied)
     LC_b.place(x=100, y=50)
 
-    RC_b = Button(rechner, text="RC Glied", bg="white", command=RCglied)
+    RC_b = Button(rechner, text="RC-Pass", bg="white", command=RCglied)
     RC_b.place(x=180, y=50)
 
     # ------------------------------------------- Zurück Option

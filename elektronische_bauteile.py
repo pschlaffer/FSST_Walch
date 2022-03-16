@@ -26,7 +26,7 @@ reciever   = "pschlaffer@tsn.at"
 
 # ------------------------------------------------------ Tkinter Fenster erstellen
 rechner = Tk()
-rechner.title("Schaltungs Berechner")
+rechner.title("Circuit Calculator")
 rechner.geometry("350x350")
 rechner.configure(bg="white")
 darkmode = "white"
@@ -62,20 +62,20 @@ def user_select(darkmode):
         lightmode_b = Button(rechner, text="Light Mode", image=light_moon,bg="white", bd=0, command=lambda:dark_switch())
         lightmode_b.place(x=0,y=310)
 
-    # ------------------------------------------------------ Start GUI 
-    cSelect = Label(rechner, text="Was wollen sie berechnen?", foreground="black", bg="white", font=("Calibri", 15, "bold"))
-    cSelect.place(x=55, y=20)
+    # ------------------------------------------------------ Auswahl menü
+    cSelect = Label(rechner, text="What would you like to calculate?", foreground="black", bg="white", font=("Calibri", 15, "bold"))
+    cSelect.place(x=40, y=20)
 
-    resistor_b = Button(rechner, text="Widerstand", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/R_calc.py").read()))
+    resistor_b = Button(rechner, text="Resistor", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/R_calc.py").read()))
     resistor_b.place(x=50, y=55)
 
-    capacitor_b = Button(rechner, text="Kondensator", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/C_calc.py").read()))
+    capacitor_b = Button(rechner, text="Capacitor", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/C_calc.py").read()))
     capacitor_b.place(x=150, y=55)
 
-    spool_b = Button(rechner, text="Spule", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/L_calc.py").read()))
+    spool_b = Button(rechner, text="Coil", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/L_calc.py").read()))
     spool_b.place(x=250, y=55)
 
-    mail_b = Button(rechner, text="Kontakt", foreground="black",background="white", bd=0 ,command=lambda:exec(open("packs/mail.py").read()))
+    mail_b = Button(rechner, text="Contakt", foreground="black",background="white", bd=0 ,command=lambda:exec(open("packs/mail.py").read()))
     mail_b.place(x=150,y=320)
 
     formula_b = Button(rechner, text="Formulas", bg='white', bd=0,command=lambda:exec(open("packs/formulas.py").read()))

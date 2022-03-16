@@ -15,19 +15,22 @@ def mail():
     bar = Label(rechner,width="300", text="Please enter details below", bg="orange",fg="white",font=("Calibri", 15, "bold"))
     bar.pack() 
 
-    text1=Label(rechner, text="Betreff:", bg ="white",font=("Calibri", 12, "bold"))
+    text1=Label(rechner, text="Reference:", bg ="white",font=("Calibri", 12, "bold"))
     text1.place(x=15, y=50)
 
     betreff = Entry(rechner, bg="#8a8a8a")
     betreff.insert(0, "*")
     betreff.place(x=110, y=55, width=200, height=25)
 
-    text2 = Label(rechner, text="Nachricht:", bg="white", font=("Calibri", 12, "bold"))
+    text2 = Label(rechner, text="Message:", bg="white", font=("Calibri", 12, "bold"))
     text2.place(x=15, y=85)
 
     nachricht = Entry(rechner, bg="#8A8A8A")
     nachricht.insert(0,"*")
     nachricht.place(x=110, y=90, width=200, height=100)
+
+    note = Label(rechner, text="Errors might occur when seding via HTL network!!", bg="white")
+    note.place(x= 10, y=322)
 
     # ----------------------------------------------- Mail schreiben
     def get():
@@ -79,8 +82,8 @@ def mail():
     # ----------------------------------------------- Button bzw. Entertaste zur Ausführung
     def enter(event):
         get()
-    calc_b = Button(rechner, text="Senden", bg="white",command=get)
-    calc_b.place(x=260, y= 200)
+    calc_b = Button(rechner, text="Send", bg="white",command=get)
+    calc_b.place(x=275, y= 200)
     rechner.bind('<Return>', enter)
     
     # ----------------------------------------------- Zurück Option

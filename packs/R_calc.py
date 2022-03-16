@@ -20,18 +20,18 @@ def widerstand():
         img_label.place(x=130, y=140)
         
         # ------------------------------------------- Berechnungs GUI
-        cSelect1 = Label(rechner, text="Parallel Schaltung Rechner", bg="white")
+        cSelect1 = Label(rechner, text="Parallel circuit calculator", bg="white")
         cSelect1.place(x=120, y=20)
 
-        result = Label(rechner, text="Berechnet:", bg="white")
-        result.place(x=40, y=90)
+        result = Label(rechner, text="Calculated:", bg="white",font=("Calibri", 10, "bold"))
+        result.place(x=40, y=100)
         
-        ohm_text1 = Label(rechner, text="1. Widerstand:", bg="white")
+        ohm_text1 = Label(rechner, text="1. Resistor:", bg="white")
         ohm_text1.place(x=40, y=50)
         ohm_valueR1 = Entry(rechner)
         ohm_valueR1.place(x=120, y=50)
 
-        ohm_text2 = Label(rechner, text="2. Widerstand:", bg="white")
+        ohm_text2 = Label(rechner, text="2. Resistor:", bg="white")
         ohm_text2.place(x=40, y=70)
         ohm_valueR2 = Entry(rechner)
         ohm_valueR2.place(x=120, y=70)
@@ -66,7 +66,7 @@ def widerstand():
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
-        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
         new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
@@ -88,18 +88,18 @@ def widerstand():
         img_label.place(x=130, y=140)
 
         # ------------------------------------------- Berechnungs GUI
-        cTitle = Label(rechner, text="Reihenschaltung Rechner", bg="white")
+        cTitle = Label(rechner, text="Serial circuit calculator", bg="white")
         cTitle.place(x=110, y=20)
 
-        result = Label(rechner, text="Berechnet:", bg="white")
-        result.place(x=40, y=90)
+        result = Label(rechner, text="Calculated:", bg="white",font=("Calibri", 10, "bold"))
+        result.place(x=40, y=100)
 
-        ohm_text1 = Label(rechner, text="1. Widerstand:", bg="white")
+        ohm_text1 = Label(rechner, text="1. Resistor:", bg="white")
         ohm_text1.place(x=40, y=50)
         ohm_valueR1 = Entry(rechner)
         ohm_valueR1.place(x=120, y=50)
 
-        ohm_text2 = Label(rechner, text="2. Widerstand:", bg="white")
+        ohm_text2 = Label(rechner, text="2. Resistor:", bg="white")
         ohm_text2.place(x=40, y=70)
         ohm_valueR2 = Entry(rechner)
         ohm_valueR2.place(x=120, y=70)
@@ -135,7 +135,7 @@ def widerstand():
         back_b.place(x=300, y=320)
         
         # ------------------------------------------------------ Rechner Neustarten
-        new_calc = Button(rechner, text="Neu", command=lambda:user_select(switch), bg="white")
+        new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
         new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
@@ -150,13 +150,13 @@ def widerstand():
         widgets.destroy()
     
     # ------------------------------------------- Schaltungsart auswählen Frame
-    cSelect1 = Label(rechner, text="Ihre Schaltungsart?", bg="white")
+    cSelect1 = Label(rechner, text="Circuit type?", bg="white")
     cSelect1.place(x=120, y=20)
 
-    parrallel_b = Button(rechner, text="Parralel", command=lambda:parallel(), bg="white")
+    parrallel_b = Button(rechner, text="Parallel", command=lambda:parallel(), bg="white")
     parrallel_b.place(x=100, y=50)
 
-    seriell_b = Button(rechner, text="Seriell", command=lambda:seriell(), bg="white")
+    seriell_b = Button(rechner, text="Serial", command=lambda:seriell(), bg="white")
     seriell_b.place(x=180, y=50)
 
     # ------------------------------------------- Zurück Option
