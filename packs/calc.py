@@ -23,9 +23,8 @@ class resistor(components):
         self.ohm_valueR2 = ohm_valueR2
 
     def current(self, R, rechner):
-        # ------------------------------------------------------ Parralel Schaltung
+        # ------------------------------------------------------ Parralel Schaltung Berechnung
         if (R.select == "P"):
-            # ------------------------------------------------------ Berechnung & rundung
             R12 = (R.ohm_valueR1 * R.ohm_valueR2)/(R.ohm_valueR1 + R.ohm_valueR2)
             R12_round = round(R12, 1)
             if R12_round < 1000:
@@ -36,9 +35,8 @@ class resistor(components):
             iResult = Label(rechner, text=R12_new, bg="white")
             iResult.place(x=120, y=100)
         
-        # ------------------------------------------------------ Reihen Schaltung
+        # ------------------------------------------------------ Reihen Schaltung Berechnung
         else:
-            # ------------------------------------------------------ Berechnung
             R12 = R.ohm_valueR1 + R.ohm_valueR2
             if R12 < 1000:
                 R12_new = R12, "Ω"
@@ -100,8 +98,6 @@ class capacitor(components):
             switch = "black"
             iResult['bg']  = "#3C4145"
             iResult['fg']  = "white"
-            new_calc['bg'] = "#3C4145"
-            new_calc['fg'] = "white"
         else:
             switch = "white"
 
@@ -151,7 +147,5 @@ class spool(components):
             switch = "black"
             iResult['bg']  = "#3C4145"
             iResult['fg']  = "white"
-            new_calc['bg'] = "#3C4145"
-            new_calc['fg'] = "white"
         else:
             switch = "white"

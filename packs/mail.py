@@ -11,7 +11,7 @@ def mail():
     for widgets in rechner.winfo_children():
         widgets.destroy()
 
-    # ----------------------------------------------- Kontakt Gui   
+    # ----------------------------------------------- Kontakt GUI  
     bar = Label(rechner,width="300", text="Please enter details below", bg="orange",fg="white",font=("Calibri", 15, "bold"))
     bar.pack() 
 
@@ -25,7 +25,7 @@ def mail():
     text2 = Label(rechner, text="Message:", bg="white", font=("Calibri", 12, "bold"))
     text2.place(x=15, y=85)
 
-    nachricht = Entry(rechner, bg="#8a8a8a")
+    nachricht = Entry(rechner, bg="#8A8A8A")
     nachricht.insert(0,"*")
     nachricht.place(x=110, y=90, width=200, height=100)
 
@@ -43,7 +43,6 @@ def mail():
         def error_message():
             error = Label(rechner, text="Please enter Value!")
             error.place(x=105, y=200)
-            
             # ----------------------------------------------- Darkmode
             if rechner['bg'] == "#3C4145":
                 error['bg']     = "#3C4145"
@@ -66,18 +65,15 @@ def mail():
             msg['To'] = reciever
             part = MIMEText(nachricht_valueget, 'plain')
             msg.attach(part)
-
             # ----------------------------------------------- Nachricht senden
             smtpObj = smtplib.SMTP(smtpServer, smtpPort)
             smtpObj.set_debuglevel(1)
             smtpObj.starttls()
             smtpObj.login(username, password)
             smtpObj.sendmail(sender, reciever, msg.as_string())
-
-            # ----------------------------------------------- Falls erfolgreich gesendet nachricht einblenden
+            # ----------------------------------------------- Falls erfolgreich, gesendet nachricht einblenden
             success = Label(rechner, text="Succesfull sended!", fg="green")
             success.place(x=105, y=200)
-            
             # ----------------------------------------------- Darkmode
             if rechner['bg'] == "#3C4145":
                 success['bg']   = "#3C4145"
