@@ -33,6 +33,7 @@ darkmode = "white"
 
 # ------------------------------------------------------ Auswahl fenster
 def user_select(darkmode):
+    rechner.geometry("350x350")
     # ------------------------------------------------------ Alle widgets / labels löschen
     for widgets in rechner.winfo_children():
         widgets.destroy()
