@@ -7,6 +7,7 @@ from tkinter import *
 import math as m
 
 # ------------------------------------------------------ Klassen
+# ------------------------------------------------------ Komponenten für alle Klassen
 class components:
     def __init__(self, tolerance, impedance, voltage, frequenz, phi):
         self.tolerance = tolerance
@@ -14,7 +15,8 @@ class components:
         self.voltage   = voltage
         self.frequenz  = frequenz
         self.phi       = phi
-        
+
+# ------------------------------------------------------ Widerstand Berechnungen   
 class resistor(components): 
     def __init__(self, select, ohm_valueR1, ohm_valueR2, tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self, tolerance, impedance, voltage,frequenz, phi)
@@ -52,6 +54,8 @@ class resistor(components):
             iResult['fg']  = "white"
         else:
             switch = "white"
+
+# ------------------------------------------------------ Kondensator Berechnungen
 class capacitor(components):
     def __init__(self, LCselect, farad_value1, ohm_valueR1, henry_value1, tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self, tolerance, impedance, voltage, frequenz, phi)
@@ -101,6 +105,7 @@ class capacitor(components):
         else:
             switch = "white"
 
+# ------------------------------------------------------ Spulen Berechnungen
 class spool(components):
     def __init__(self, LCselect, henry_value1, ohm_valueR1, farad_value1,tolerance, impedance, voltage, frequenz, phi):
         components.__init__(self,tolerance, impedance, voltage, frequenz, phi)
