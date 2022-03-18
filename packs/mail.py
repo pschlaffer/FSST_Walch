@@ -3,10 +3,10 @@
 # ------- FSST - Walch
 
 # ----------------------------------------------- Libarys
-import elektronische_bauteile
+from tkinter import *
 
 # ---------------------------------------------------------- Mail sende Fenster
-def mail():
+def mail_send(rechner, user_select):
     # ----------------------------------------------- Alle widgets / labels löschen
     for widgets in rechner.winfo_children():
         widgets.destroy()
@@ -101,4 +101,3 @@ def mail():
         switch="white"
     
     rechner.mainloop()
-mail()

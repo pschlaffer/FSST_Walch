@@ -2,13 +2,23 @@
 # -------- 09.03.2022
 # -------- FSST - Walch
 
+# ------------------------------------------- Libarys
+from tkinter import *
+from packs.calc import spool
+
 # ------------------------------------------- Grenzfrequenz Berechnung Spule
-def spool_calc():
+def spool_calc(rechner, user_select):
+    error=0
     # ------------------------------------------- LC Glied
-    def LCglied():
+    def LCglied(error):
         # ------------------------------------------- Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        # ------------------------------------------- Error nachricht
+        if error == "E":
+            cError = Label(rechner, text="Please enter value!", bg="white")
+            cError.place(x=120, y=120)
 
         # ------------------------------------------- Schaltungsbild einfügen
         lcPass_image = PhotoImage(file = r"images/LC-pass.png")
@@ -36,9 +46,17 @@ def spool_calc():
         # ------------------------------------------- Werte einlesen und an Klasse übergeben
         def get():
             henry_valueget = henry_value1.get()
-            int_henry_value = int(henry_valueget)
             farad_valueget = farad_value1.get()
-            int_farad_value = int(farad_valueget)
+
+            if henry_valueget == '' or farad_valueget == '':
+                LCglied("E")
+            elif henry_valueget == '0' or farad_valueget == '0':
+                LCglied("E")
+            else:
+                if error == "E":
+                    cError.destroy()
+                int_henry_value = int(henry_valueget)
+                int_farad_value = int(farad_valueget)
 
             # ------------------------------------------- Lösungsfeld wieder säubern
             iResult = Label(rechner,bg="white", text="                            ")
@@ -59,7 +77,7 @@ def spool_calc():
         rechner.bind('<Return>', enter)
 
         # ------------------------------------------- Zurück Option
-        back_b = Button(rechner, text="Back", bg="white",command=lambda:exec(open("packs/L_calc.py").read()))
+        back_b = Button(rechner, text="Back", bg="white",command=lambda:spool_calc(rechner, user_select))
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
@@ -74,10 +92,15 @@ def spool_calc():
         rechner.mainloop()
 
     # ------------------------------------------- RL Glied
-    def RLglied():
+    def RLglied(error):
         # ------------------------------------------- Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        # ------------------------------------------- Error nachricht
+        if error == "E":
+            cError = Label(rechner, text="Please enter value!", bg="white")
+            cError.place(x=120, y=120)
 
         # ------------------------------------------- Schaltungsbild einfügen
         rlPass_image = PhotoImage(file = r"images/rl-Tiefpass.png")
@@ -105,9 +128,17 @@ def spool_calc():
         # ------------------------------------------- Werte einlesen und an Klasse übergeben
         def get():
             ohm_valueget = ohm_value1.get()
-            int_ohm_value = int(ohm_valueget)
             henry_valueget = henry_value.get()
-            int_henry_value = int(henry_valueget)
+            
+            if henry_valueget == '' or ohm_valueget == '':
+                RLglied("E")
+            elif henry_valueget == '0' or ohm_valueget == '0':
+                RLglied("E")
+            else:
+                if error == "E":
+                    cError.destroy()
+                int_ohm_value = int(ohm_valueget)
+                int_henry_value = int(henry_valueget)
 
             # ------------------------------------------- Lösungsfeld wieder säubern
             iResult = Label(rechner, bg="white",text="                                 ")
@@ -128,7 +159,7 @@ def spool_calc():
         rechner.bind('<Return>', enter)
 
         # ------------------------------------------- Zurück Option
-        back_b = Button(rechner, text="Back", bg="white",command=lambda:exec(open("packs/L_calc.py").read()))
+        back_b = Button(rechner, text="Back", bg="white",command=lambda:spool_calc(rechner, user_select))
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
@@ -150,10 +181,10 @@ def spool_calc():
     cSelect = Label(rechner, text="Circuit type?", bg="white")
     cSelect.place(x=120, y=20)
 
-    LC_b = Button(rechner, text="LC-Pass", command=LCglied, bg="white")
+    LC_b = Button(rechner, text="LC-Pass", command=lambda:LCglied(error), bg="white")
     LC_b.place(x=100, y=50)
 
-    RL_b = Button(rechner, text="RL-Pass", command=RLglied, bg="white")
+    RL_b = Button(rechner, text="RL-Pass", command=lambda:RLglied(error), bg="white")
     RL_b.place(x=180, y=50)
     
     # ------------------------------------------- Zurück Option
@@ -168,5 +199,3 @@ def spool_calc():
         switch = "black"
     else:
         switch = "white"
-
-spool_calc()

@@ -3,15 +3,19 @@
 # --------- FSST - Walch
 
 # ------------------------------------------------------ Libarys
+
 # ----------------------------- Tkinter
 from tkinter import *
 from PIL import ImageTk, Image
 # ----------------------------- OPEN URL
 import webbrowser
 # ----------------------------- Modules
-from packs.calc import *
+from packs.mail import mail_send
+from packs.formulas import formula
+from packs.C_calc import capacitor_calc
+from packs.L_calc import spool_calc
+from packs.R_calc import widerstand
 # ----------------------------- Mail
-import packs.mail
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -27,7 +31,6 @@ reciever   = "pschlaffer@tsn.at"
 # ------------------------------------------------------ Tkinter Fenster erstellen
 rechner = Tk()
 rechner.title("Circuit Calculator")
-rechner.geometry("350x350")
 rechner.configure(bg="white")
 darkmode = "white"
 
@@ -41,7 +44,7 @@ def user_select(darkmode):
     # ------------------------------------------------------ Logo einfügen
     htl_img = PhotoImage(file = r"images/HTL.png")
     img_label = Button(image=htl_img, command=lambda:webbrowser.open_new(r"https://htlinn.ac.at/"))
-    img_label.configure(background="white", pady=0, padx=0, bd=0, activebackground="white")
+    img_label.configure(bg="white", pady=0, padx=0, bd=0, activebackground="white")
     img_label.place(x=80, y=100)
     
     # ------------------------------------------------------ Darkmode
@@ -60,26 +63,26 @@ def user_select(darkmode):
     light_moon  = PhotoImage(file = r"images/lightmode.png")
     def light_switch():
         rechner['bg'] = "white"
-        lightmode_b = Button(rechner, text="Light Mode", image=light_moon,bg="white", bd=0, command=lambda:dark_switch())
+        lightmode_b = Button(rechner, text="Light Mode", image=light_moon, bg="white", bd=0, command=lambda:dark_switch())
         lightmode_b.place(x=0,y=310)
 
-    # ------------------------------------------------------ Auswahl menü
-    cSelect = Label(rechner, text="What would you like to calculate?", foreground="black", bg="white", font=("Calibri", 15, "bold"))
+    # ------------------------------------------------------ Auswahl GUI
+    cSelect     = Label(rechner, text="What would you like to calculate?", fg="black", bg="white", font=("Calibri", 15, "bold"))
     cSelect.place(x=40, y=20)
 
-    resistor_b = Button(rechner, text="Resistor", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/R_calc.py").read()))
+    resistor_b  = Button(rechner, text="Resistor",  bg="white", bd=2, command=lambda:widerstand(rechner, user_select))
     resistor_b.place(x=50, y=55)
 
-    capacitor_b = Button(rechner, text="Capacitor", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/C_calc.py").read()))
+    capacitor_b = Button(rechner, text="Capacitor", bg="white", bd=2, command=lambda:capacitor_calc(rechner, user_select))
     capacitor_b.place(x=150, y=55)
 
-    spool_b = Button(rechner, text="Coil", foreground="black", background="white", bd=1, command=lambda:exec(open("packs/L_calc.py").read()))
+    spool_b     = Button(rechner, text="Coil",      bg="white", bd=2, command=lambda:spool_calc(rechner, user_select))
     spool_b.place(x=250, y=55)
 
-    mail_b = Button(rechner, text="Contakt", foreground="black",background="white", bd=0 ,command=lambda:exec(open("packs/mail.py").read()))
+    mail_b      = Button(rechner, text="Contakt",   bg="white", bd=0, command=lambda:mail_send(rechner, user_select))
     mail_b.place(x=150,y=320)
 
-    formula_b = Button(rechner, text="Formulas", bg='white', bd=0,command=lambda:exec(open("packs/formulas.py").read()))
+    formula_b   = Button(rechner, text="Formulas",  bg='white', bd=0, command=lambda:formula(rechner, user_select))
     formula_b.place(x=292, y=320)
 
     # ------------------------------------------------------  Light/Darkmode Button Switch

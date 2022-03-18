@@ -3,15 +3,22 @@
 # --------- FSST - Walch
 
 # ------------------------------------------- Libarys
-import packs.calc
+from tkinter import *
+from packs.calc import capacitor
 
 # ------------------------------------------- Grenzfrequenz Berechnung Kondensator
-def capacitor_calc():
+def capacitor_calc(rechner, user_select):
+    error=0
     # ------------------------------------------- LC Glied
-    def LCglied():
+    def LCglied(error):
         # ------------------------------------------- Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        # ------------------------------------------- Error nachricht
+        if error == "E":
+            cError = Label(rechner, text="Please enter value!", bg="white")
+            cError.place(x=120, y=120)
 
         # ------------------------------------------- Schaltungsbild einfügen
         lcPass_image = PhotoImage(file = r"images/LC-pass.png")
@@ -23,6 +30,7 @@ def capacitor_calc():
         cSelect1.place(x=120, y=20)
 
         result = Label(rechner, text="Calculated:", bg="white",font=("Calibri", 10, "bold"))
+        result.place(x=39, y=100)
         
         text1 = Label(rechner, text="Coil (mH):", bg="white")
         text1.place(x=43, y=50)
@@ -38,9 +46,17 @@ def capacitor_calc():
         # ------------------------------------------- Werte einlesen und an Klasse übergeben
         def get():
             henry_valueget = henry_value1.get()
-            int_henry_value = int(henry_valueget)
             farad_valueget = farad_value1.get()
-            int_farad_value = int(farad_valueget)
+            
+            if henry_valueget == '' or farad_valueget == '':
+                LCglied("E")
+            elif henry_valueget == '0' or farad_valueget == '0':
+                LCglied("E")
+            else:
+                if error == "E":
+                    cError.destroy()
+                int_farad_value = int(farad_valueget)
+                int_henry_value = int(henry_valueget)
 
             # ------------------------------------------- Lösungsfeld wieder säubern
             iResult = Label(rechner, bg="white",text="                       ") 
@@ -61,7 +77,7 @@ def capacitor_calc():
         rechner.bind('<Return>', enter)
 
         # ------------------------------------------- Zurück Option
-        back_b = Button(rechner, text="Back", bg="white",command=lambda:exec(open("packs/C_calc.py").read()))
+        back_b = Button(rechner, text="Back", bg="white",command=lambda:capacitor_calc(rechner, user_select))
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
@@ -76,10 +92,15 @@ def capacitor_calc():
         rechner.mainloop()
 
     # ------------------------------------------- RC Glied
-    def RCglied():
+    def RCglied(error):
         # ------------------------------------------- Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        # ------------------------------------------- Error nachricht
+        if error == "E":
+            cError = Label(rechner, text="Please enter value!", bg="white")
+            cError.place(x=120, y=120)
 
         # ------------------------------------------- Schaltungsbild einfügen
         rcPass_image = PhotoImage(file = r"images/RC-Tiefpass.png")
@@ -107,9 +128,17 @@ def capacitor_calc():
         # ------------------------------------------- Werte einlesen und an Klasse übergeben
         def get():
             ohm_valueget = ohm_value1.get()
-            int_ohm_value = int(ohm_valueget)
             farad_valueget = farad_value1.get()
-            int_farad_value = int(farad_valueget)
+            
+            if farad_valueget == '' or ohm_valueget == '':
+                RCglied("E")
+            elif farad_valueget == '0' or ohm_valueget == '0':
+                RCglied("E")
+            else:
+                if error == "E":
+                    cError.destroy()
+                int_farad_value = int(farad_valueget)
+                int_ohm_value = int(ohm_valueget)
 
             # ------------------------------------------- Lösungsfeld wieder säubern
             iResult = Label(rechner, bg="white",text="                          ")
@@ -130,7 +159,7 @@ def capacitor_calc():
         rechner.bind('<Return>', enter)
 
         # ------------------------------------------- Zurück Option
-        back_b = Button(rechner, text="Back", bg="white", command=lambda:exec(open("packs/C_calc.py").read()))
+        back_b = Button(rechner, text="Back", bg="white", command=lambda:capacitor_calc(rechner, user_select))
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
@@ -152,10 +181,10 @@ def capacitor_calc():
     cSelect = Label(rechner, text="Circuit type?", bg="white")
     cSelect.place(x=120, y=20)
 
-    LC_b = Button(rechner, text="LC-Pass", bg="white", command=LCglied)
+    LC_b = Button(rechner, text="LC-Pass", bg="white", command=lambda:LCglied(error))
     LC_b.place(x=100, y=50)
 
-    RC_b = Button(rechner, text="RC-Pass", bg="white", command=RCglied)
+    RC_b = Button(rechner, text="RC-Pass", bg="white", command=lambda:RCglied(error))
     RC_b.place(x=180, y=50)
 
     # ------------------------------------------- Zurück Option
@@ -170,5 +199,3 @@ def capacitor_calc():
         switch = "black"
     else:
         switch = "white"
-
-capacitor_calc()

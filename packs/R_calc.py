@@ -3,16 +3,22 @@
 # ------- FSST - Walch
 
 # ------------------------------------------- Libarys
-import elektronische_bauteile
-import packs.calc
+from tkinter import *
+from packs.calc import resistor
 
 # ------------------------------------------- Widerstandsschaltung Berechnung
-def widerstand():
+def widerstand(rechner, user_select):
+    error=0
     # ------------------------------------------- Parallel Schaltung
-    def parallel():
+    def parallel(error):
         # ------------------------------------------- Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
+        
+        # ------------------------------------------- Error nachricht
+        if error == "E":
+            cError = Label(rechner, text="Please enter value!", bg="white")
+            cError.place(x=120, y=120)
 
         # ------------------------------------------- Schaltungsbild einfügen
         parallel_image = PhotoImage(file = r"images/Resistor_par.png")
@@ -39,9 +45,17 @@ def widerstand():
         # ------------------------------------------- Werte einlesen und an Klassen übergeben
         def get():
             ohm_valuegetR1 = ohm_valueR1.get()
-            int_ohm_valueR1 = int(ohm_valuegetR1)
             ohm_valuegetR2 = ohm_valueR2.get()
-            int_ohm_valueR2 = int(ohm_valuegetR2)
+
+            if ohm_valuegetR1 == '' or ohm_valuegetR2 == '':
+                parallel("E")
+            elif ohm_valuegetR1 == '0' or ohm_valuegetR2 == '0':
+                parallel("E")
+            else:
+                if error == "E":
+                    cError.destroy()
+                int_ohm_valueR2 = int(ohm_valuegetR2)
+                int_ohm_valueR1 = int(ohm_valuegetR1)
 
             # ------------------------------------------- Lösungsfeld wieder säubern
             iResult = Label(rechner, text="                           ", bg="white")
@@ -62,7 +76,7 @@ def widerstand():
         rechner.bind('<Return>', enter)
   
         # ------------------------------------------- Zurück Option
-        back_b = Button(rechner, text="Back", bg="white",command=lambda:exec(open("packs/R_calc.py").read()))
+        back_b = Button(rechner, text="Back", bg="white",command=lambda:widerstand(rechner, user_select))
         back_b.place(x=300, y=320)
 
         # ------------------------------------------------------ Rechner Neustarten
@@ -77,10 +91,15 @@ def widerstand():
         rechner.mainloop()
 
     # ------------------------------------------- Serielle Schaltung
-    def seriell():
+    def seriell(error):
         # ------------------------------------------- Alle widgets / labels löschen
         for widgets in rechner.winfo_children():
             widgets.destroy()
+
+        # ------------------------------------------- Error nachricht
+        if error == "E":
+            cError = Label(rechner, text="Please enter value!", bg="white")
+            cError.place(x=120, y=120)
 
         # ------------------------------------------- Schaltungsbild einfügen
         seriell_image = PhotoImage(file = r"images/Resistor_ser.png")
@@ -108,9 +127,17 @@ def widerstand():
         def get():
             # ------------------------------------------- char aus entry auslesen und in integer umwandeln
             ohm_valuegetR1 = ohm_valueR1.get()
-            int_ohm_valueR1 = int(ohm_valuegetR1)
             ohm_valuegetR2 = ohm_valueR2.get()
-            int_ohm_valueR2 = int(ohm_valuegetR2)
+
+            if ohm_valuegetR1 == '' or ohm_valuegetR2 == '':
+                seriell("E")
+            elif ohm_valuegetR1 == '0' or ohm_valuegetR2 == '0':
+                seriell("E")
+            else:
+                if error == "E":
+                    cError.destroy()
+                int_ohm_valueR2 = int(ohm_valuegetR2)
+                int_ohm_valueR1 = int(ohm_valuegetR1)
 
             # ------------------------------------------- Lösungsfeld wieder säubern
             iResult = Label(rechner, text="                          ", bg="white") 
@@ -131,7 +158,7 @@ def widerstand():
         rechner.bind('<Return>', enter)
 
         # ------------------------------------------- Zurück option
-        back_b = Button(rechner, text="Back", bg="white", command=lambda:exec(open("packs/R_calc.py").read()))
+        back_b = Button(rechner, text="Back", bg="white", command=lambda:widerstand(rechner, user_select))
         back_b.place(x=300, y=320)
         
         # ------------------------------------------------------ Rechner Neustarten
@@ -153,10 +180,10 @@ def widerstand():
     cSelect1 = Label(rechner, text="Circuit type?", bg="white")
     cSelect1.place(x=120, y=20)
 
-    parrallel_b = Button(rechner, text="Parallel", command=lambda:parallel(), bg="white")
+    parrallel_b = Button(rechner, text="Parallel", command=lambda:parallel(error), bg="white")
     parrallel_b.place(x=100, y=50)
 
-    seriell_b = Button(rechner, text="Serial", command=lambda:seriell(), bg="white")
+    seriell_b = Button(rechner, text="Serial", command=lambda:seriell(error), bg="white")
     seriell_b.place(x=180, y=50)
 
     # ------------------------------------------- Zurück Option
@@ -173,4 +200,3 @@ def widerstand():
         switch = "white"
     
     rechner.mainloop()
-widerstand()
