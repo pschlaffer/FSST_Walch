@@ -3,30 +3,17 @@
 # --------- FSST - Walch
 
 # ------------------------------------------------------ Libarys
-
 # ----------------------------- Tkinter
 from tkinter import *
-from PIL import ImageTk, Image
-# ----------------------------- OPEN URL
+from PIL     import ImageTk, Image
+# ----------------------------- Open URL
 import webbrowser
 # ----------------------------- Modules
-from packs.mail import mail_send
+from packs.mail     import mail_send
 from packs.formulas import formula
-from packs.C_calc import capacitor_calc
-from packs.L_calc import spool_calc
-from packs.R_calc import widerstand
-# ----------------------------- Mail
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-
-# ------------------------------------------------------ Mail Einstellungen
-smtpServer = "smtp.web.de"
-smtpPort   = 587
-username   = "htl_mangott-schlaffer"
-password   = "nibnab01"
-sender     = "htl_mangott-schlaffer@web.de"
-reciever   = "pschlaffer@tsn.at"
+from packs.C_calc   import capacitor_calc
+from packs.L_calc   import spool_calc
+from packs.R_calc   import widerstand
 
 # ------------------------------------------------------ Tkinter Fenster erstellen
 rechner = Tk()
@@ -66,6 +53,9 @@ def user_select(darkmode):
         lightmode_b = Button(rechner, text="Light Mode", image=light_moon, bg="white", bd=0, command=lambda:dark_switch())
         lightmode_b.place(x=0,y=310)
 
+    # ----------------------------------------------- Damit nur eine nachricht pro programmstart gesendet wird
+    sended_mail = "no"
+
     # ------------------------------------------------------ Auswahl GUI
     cSelect     = Label(rechner, text="What would you like to calculate?", fg="black", bg="white", font=("Calibri", 15, "bold"))
     cSelect.place(x=40, y=20)
@@ -79,7 +69,7 @@ def user_select(darkmode):
     spool_b     = Button(rechner, text="Coil",      bg="white", bd=2, command=lambda:spool_calc(rechner, user_select))
     spool_b.place(x=250, y=55)
 
-    mail_b      = Button(rechner, text="Contakt",   bg="white", bd=0, command=lambda:mail_send(rechner, user_select))
+    mail_b      = Button(rechner, text="Contact",   bg="white", bd=0, command=lambda:mail_send(rechner, user_select, sended_mail))
     mail_b.place(x=150,y=320)
 
     formula_b   = Button(rechner, text="Formulas",  bg='white', bd=0, command=lambda:formula(rechner, user_select))
