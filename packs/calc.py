@@ -3,8 +3,9 @@
 # --------- FSST - Walch
 
 # ------------------------------------------------------ Libarys
-from tkinter import *
 import math as m
+from tkinter import *
+from website.website import website_build
 
 # ------------------------------------------------------ Klassen
 # ------------------------------------------------------ Komponenten für alle Klassen
@@ -36,6 +37,9 @@ class resistor(components):
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=R12_new, bg="white")
             iResult.place(x=120, y=100)
+
+            # ------------------------------------------------------ An website programm senden
+            website_build("P", R.ohm_valueR1, R.ohm_valueR2, R12_round)
         
         # ------------------------------------------------------ Reihen Schaltung Berechnung
         else:
@@ -47,6 +51,10 @@ class resistor(components):
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=R12_new, bg="white")
             iResult.place(x=120, y=100)
+
+            # ------------------------------------------------------ An website programm senden
+            website_build("S", R.ohm_valueR1, R.ohm_valueR2, R12)
+
         # ------------------------------------------------------ Darkmode
         if rechner['bg'] == "#3C4145":
             switch = "black"
@@ -80,6 +88,9 @@ class capacitor(components):
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=fg_round_new, bg="white")
             iResult.place(x=120, y=100)
+
+            # ------------------------------------------------------ An website programm senden
+            website_build("RC", C.ohm_valueR1, C.farad_value1, fg_round)
    
         # ------------------------------------------------------ LC Glied
         else:
@@ -96,6 +107,9 @@ class capacitor(components):
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=fg_round_new, bg="white")
             iResult.place(x=120, y=100)
+
+            # ------------------------------------------------------ An website programm senden
+            website_build("LC", C.farad_value1, C.henry_value1, fg_round)
             
         # ------------------------------------------------------ Darkmode
         if rechner['bg'] == "#3C4145":
@@ -131,6 +145,9 @@ class spool(components):
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=fg_round_new, bg="white")
             iResult.place(x=120, y=100)
+
+            # ------------------------------------------------------ An website programm senden
+            website_build("LC", L.farad_value1, L.henry_value1, fg_round)
             
         # ------------------------------------------------------ RL Glied
         else:
@@ -146,6 +163,9 @@ class spool(components):
             # ------------------------------------------------------ Anzeige
             iResult = Label(rechner, text=fg_round_new, bg ="white")
             iResult.place(x=120, y=100)
+
+            # ------------------------------------------------------ An website programm senden
+            website_build("RL", L.ohm_valueR1, L.henry_value1, fg_round)
 
         # ------------------------------------------------------ Darkmode
         if rechner['bg'] == "#3C4145":
