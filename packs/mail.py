@@ -121,7 +121,10 @@ def mail_send(rechner, user_select, sended_mail):
     switch = "white"
     back_b = Button(rechner, text="Back", command=lambda:user_select(switch), bg="white")
     back_b.place(x=300, y=320)
-
+    
+    # ------------------------------------------------------ Bei Escape schließen
+    rechner.bind('<Escape>', lambda el: user_select(switch))
+    
     # ----------------------------------------------- Darkmode 
     if rechner['bg'] == "#3C4145":
         for widgets in rechner.winfo_children():

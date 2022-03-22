@@ -78,6 +78,8 @@ def widerstand(rechner, user_select):
         # ------------------------------------------- Zurück Option
         back_b = Button(rechner, text="Back", bg="white",command=lambda:widerstand(rechner, user_select))
         back_b.place(x=300, y=320)
+        # ------------------------------------------------------ Bei Escape schließen
+        rechner.bind('<Escape>', lambda el: widerstand(rechner, user_select))
 
         # ------------------------------------------------------ Rechner Neustarten
         new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
@@ -160,9 +162,11 @@ def widerstand(rechner, user_select):
         # ------------------------------------------- Zurück option
         back_b = Button(rechner, text="Back", bg="white", command=lambda:widerstand(rechner, user_select))
         back_b.place(x=300, y=320)
+        # ------------------------------------------------------ Bei Escape schließen
+        rechner.bind('<Escape>', lambda el: user_select(switch))
         
         # ------------------------------------------------------ Rechner Neustarten
-        new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
+        new_calc = Button(rechner, text="New", command=lambda:widerstand(rechner, user_select), bg="white")
         new_calc.place(x=250, y=118)
 
         # ------------------------------------------- Darkmode 
@@ -190,7 +194,9 @@ def widerstand(rechner, user_select):
     switch = "white"
     back_b = Button(rechner, text="Back", command=lambda:user_select(switch), bg="white")
     back_b.place(x=300, y=320)
-
+    
+    # ------------------------------------------------------ Bei Escape schließen
+    rechner.bind('<Escape>', lambda el: user_select(switch))
     # ------------------------------------------- Darkmode 
     if rechner['bg'] == "#3C4145":
         for widgets in rechner.winfo_children():

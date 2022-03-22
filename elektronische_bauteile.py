@@ -20,10 +20,14 @@ rechner = Tk()
 rechner.title("Circuit Calculator")
 rechner.configure(bg="white")
 darkmode = "white"
+sended_mail = "no"
 
 # ------------------------------------------------------ Auswahl fenster
 def user_select(darkmode):
     rechner.geometry("350x350")
+    # ------------------------------------------------------ Bei Escape schließen
+    rechner.bind('<Escape>', lambda el: rechner.destroy())
+
     # ------------------------------------------------------ Alle widgets / labels löschen
     for widgets in rechner.winfo_children():
         widgets.destroy()
@@ -52,9 +56,6 @@ def user_select(darkmode):
         rechner['bg'] = "white"
         lightmode_b = Button(rechner, text="Light Mode", image=light_moon, bg="white", bd=0, command=lambda:dark_switch())
         lightmode_b.place(x=0,y=310)
-
-    # ----------------------------------------------- Damit nur eine nachricht pro programmstart gesendet wird
-    sended_mail = "no"
 
     # ------------------------------------------------------ Auswahl GUI
     cSelect     = Label(rechner, text="What would you like to calculate?", fg="black", bg="white", font=("Calibri", 15, "bold"))
