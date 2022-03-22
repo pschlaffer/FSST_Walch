@@ -79,6 +79,9 @@ def capacitor_calc(rechner, user_select):
         # ------------------------------------------- Zurück Option
         back_b = Button(rechner, text="Back", bg="white",command=lambda:capacitor_calc(rechner, user_select))
         back_b.place(x=300, y=320)
+        
+        # ------------------------------------------------------ Bei Escape schließen
+        rechner.bind('<Escape>', lambda el: capacitor_calc(rechner, user_select))
 
         # ------------------------------------------------------ Rechner Neustarten
         new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
@@ -162,6 +165,9 @@ def capacitor_calc(rechner, user_select):
         back_b = Button(rechner, text="Back", bg="white", command=lambda:capacitor_calc(rechner, user_select))
         back_b.place(x=300, y=320)
 
+        # ------------------------------------------------------ Bei Escape schließen
+        rechner.bind('<Escape>', lambda el: capacitor_calc(rechner, user_select))
+
         # ------------------------------------------------------ Rechner Neustarten
         new_calc = Button(rechner, text="New", command=lambda:user_select(switch), bg="white")
         new_calc.place(x=250, y=118)
@@ -191,6 +197,9 @@ def capacitor_calc(rechner, user_select):
     switch = "white"
     back_b = Button(rechner, text="Back", bg="white",command=lambda:user_select(switch))
     back_b.place(x=300, y=320)
+
+    # ------------------------------------------------------ Bei Escape schließen
+    rechner.bind('<Escape>', lambda el: user_select(switch))
 
     # ------------------------------------------- Darkmode 
     if rechner['bg'] == "#3C4145":

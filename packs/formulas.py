@@ -52,6 +52,7 @@ def formula(rechner, user_select):
     switch = "white"
     back_b = Button(rechner, bg="white", text="Close", command=lambda:user_select(switch))
     back_b.place(x=561, y=675)
+    rechner.bind('<Escape>', lambda back: user_select(switch))
 
     # ------------------------------------------- Darkmode
     if rechner['bg'] == "#3C4145":
