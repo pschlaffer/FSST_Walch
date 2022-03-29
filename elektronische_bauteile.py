@@ -3,6 +3,8 @@
 # --------- FSST - Walch
 
 # ------------------------------------------------------ Libarys
+# ----------------------------- System
+import os
 # ----------------------------- Tkinter
 from tkinter import *
 from PIL     import ImageTk, Image
@@ -14,18 +16,20 @@ from packs.formulas  import formula
 from packs.C_calc    import capacitor_calc
 from packs.L_calc    import spool_calc
 from packs.R_calc    import widerstand
-from website.website import website_open
 
 # ------------------------------------------------------ Tkinter Fenster erstellen
 rechner = Tk()
 rechner.title("Circuit Calculator")
 rechner.configure(bg="white")
+rechner.iconbitmap("website/images/favicon.ico")
 # ------------------------------------------------------ setzt Hintergrund weiß
 darkmode = "white"
 # ------------------------------------------------------ setzt Mail sende status null
 sended_mail = "no"
 # ------------------------------------------------------ leert letzte berechnungen
 website_file_latest = open("website/calc_files/latest.txt", "w")
+# ------------------------------------------------------ HTML file der Website 
+website_open = 'file:///' + os.getcwd() + '/' + "website/rechner.html"
 
 # ------------------------------------------------------ Auswahl fenster
 def user_select(darkmode):
@@ -76,9 +80,9 @@ def user_select(darkmode):
     spool_b.place(x=250, y=55)
 
     mail_b      = Button(rechner, text="Support",   bg="white", bd=0, command=lambda:mail_send(rechner, user_select, sended_mail))
-    mail_b.place(x=150,y=300)
+    mail_b.place(x=150,y=295)
 
-    website_b   = Button(rechner, text="Website",   bg="white", bd=0, command=lambda:website_open())
+    website_b   = Button(rechner, text="Website",   bg="white", bd=0, command=lambda:webbrowser.open_new(website_open))
     website_b.place(x=150,y=320)
 
     formula_b   = Button(rechner, text="Formulas",  bg='white', bd=0, command=lambda:formula(rechner, user_select))

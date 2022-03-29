@@ -1,0 +1,5 @@
+
+--------- LC Glied Berechnen --------- 2022-03-29
+F1: 20
+H1: 20
+Calculated: 2516.0

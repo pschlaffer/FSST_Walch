@@ -1,0 +1,30 @@
+
+--------- Parallel Schaltung Berechnen --------- 2022-03-23
+R1: 3413
+R2: 31341
+Calculated: 3077.8
+
+--------- Serielle Schaltung Berechnen --------- 2022-03-23
+R1: 314
+R2: 314
+Calculated: 628
+
+--------- RL Glied Berechnen --------- 2022-03-23
+R1: 42341
+H1: 312
+Calculated: 21599.0
+
+--------- LC Glied Berechnen --------- 2022-03-23
+F1: 425
+H1: 425
+Calculated: 436.0
+
+--------- Parallel Schaltung Berechnen --------- 2022-03-23
+R1: 3410
+R2: 33514
+Calculated: 3095.1
+
+--------- RC Glied Berechnen --------- 2022-03-23
+R1: 2314
+F1: 2314
+Calculated: 30.0
