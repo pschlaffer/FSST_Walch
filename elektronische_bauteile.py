@@ -21,6 +21,7 @@ from packs.R_calc    import widerstand
 rechner = Tk()
 rechner.title("Circuit Calculator")
 rechner.configure(bg="white")
+rechner.iconbitmap("website/images/favicon.ico")
 # ------------------------------------------------------ setzt Hintergrund weiß
 darkmode = "white"
 # ------------------------------------------------------ setzt Mail sende status null
